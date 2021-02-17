@@ -74,6 +74,7 @@ class LoginViewController: UIViewController {
         // Проверяем, верны ли они
         if login == "admin" && password == "123456" {
             print("успешная авторизация")
+            performSegue(withIdentifier: "MainTabBarSegue", sender: self)
         } else {
             print("неуспешная авторизация")
         }
