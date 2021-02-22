@@ -13,6 +13,14 @@
 		D101BB3925D58AEF0038052B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D101BB3725D58AEF0038052B /* Main.storyboard */; };
 		D101BB3B25D58AF10038052B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D101BB3A25D58AF10038052B /* Assets.xcassets */; };
 		D101BB3E25D58AF10038052B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */; };
+		D13277F525E021710071EF0E /* ListFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F425E021710071EF0E /* ListFriendsViewController.swift */; };
+		D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F925E022750071EF0E /* FriendsCell.swift */; };
+		D132780125E02A560071EF0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D132780025E02A560071EF0E /* User.swift */; };
+		D134D7DB25E1626D0064E780 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7DA25E1626D0064E780 /* Group.swift */; };
+		D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7E225E3D8C70064E780 /* FriendsCollectionViewController.swift */; };
+		D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7E625E4090A0064E780 /* FriendsCollectionViewCell.swift */; };
+		D134D7EA25E40D840064E780 /* ListGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7E925E40D840064E780 /* ListGroupsTableViewController.swift */; };
+		D134D7EE25E40DAB0064E780 /* ListGroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7ED25E40DAB0064E780 /* ListGroupsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		D101BB3A25D58AF10038052B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D101BB3D25D58AF10038052B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D101BB3F25D58AF10038052B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D13277F425E021710071EF0E /* ListFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendsViewController.swift; sourceTree = "<group>"; };
+		D13277F925E022750071EF0E /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
+		D132780025E02A560071EF0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D134D7DA25E1626D0064E780 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		D134D7E225E3D8C70064E780 /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
+		D134D7E625E4090A0064E780 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D134D7E925E40D840064E780 /* ListGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGroupsTableViewController.swift; sourceTree = "<group>"; };
+		D134D7ED25E40DAB0064E780 /* ListGroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGroupsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D134D7D825E161DF0064E780 /* Model */,
 				D101BB3125D58AEF0038052B /* AppDelegate.swift */,
 				D101BB3325D58AEF0038052B /* SceneDelegate.swift */,
 				D101BB3525D58AEF0038052B /* LoginViewController.swift */,
@@ -63,8 +80,39 @@
 				D101BB3A25D58AF10038052B /* Assets.xcassets */,
 				D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */,
 				D101BB3F25D58AF10038052B /* Info.plist */,
+				D13277FC25E0227D0071EF0E /* ListFriends */,
+				D134D7F125E40DB10064E780 /* ListGorups */,
 			);
 			path = myVK;
+			sourceTree = "<group>";
+		};
+		D13277FC25E0227D0071EF0E /* ListFriends */ = {
+			isa = PBXGroup;
+			children = (
+				D13277F425E021710071EF0E /* ListFriendsViewController.swift */,
+				D13277F925E022750071EF0E /* FriendsCell.swift */,
+				D134D7E225E3D8C70064E780 /* FriendsCollectionViewController.swift */,
+				D134D7E625E4090A0064E780 /* FriendsCollectionViewCell.swift */,
+			);
+			path = ListFriends;
+			sourceTree = "<group>";
+		};
+		D134D7D825E161DF0064E780 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D132780025E02A560071EF0E /* User.swift */,
+				D134D7DA25E1626D0064E780 /* Group.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D134D7F125E40DB10064E780 /* ListGorups */ = {
+			isa = PBXGroup;
+			children = (
+				D134D7E925E40D840064E780 /* ListGroupsTableViewController.swift */,
+				D134D7ED25E40DAB0064E780 /* ListGroupsTableViewCell.swift */,
+			);
+			path = ListGorups;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +185,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D134D7EE25E40DAB0064E780 /* ListGroupsTableViewCell.swift in Sources */,
+				D134D7DB25E1626D0064E780 /* Group.swift in Sources */,
+				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
 				D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */,
+				D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */,
 				D101BB3225D58AEF0038052B /* AppDelegate.swift in Sources */,
 				D101BB3425D58AEF0038052B /* SceneDelegate.swift in Sources */,
+				D13277F525E021710071EF0E /* ListFriendsViewController.swift in Sources */,
+				D134D7EA25E40D840064E780 /* ListGroupsTableViewController.swift in Sources */,
+				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
+				D132780125E02A560071EF0E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

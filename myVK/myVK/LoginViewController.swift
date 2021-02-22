@@ -72,13 +72,26 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text!
         
         // Проверяем, верны ли они
-        if login == "admin" && password == "123456" {
+        if login == "" && password == "" {
             print("успешная авторизация")
             performSegue(withIdentifier: "MainTabBarSegue", sender: self)
         } else {
             print("неуспешная авторизация")
+            showLoginError()
         }
     }
+    
+    func showLoginError() {
+        // Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены не верные данные пользователя", preferredStyle: .alert)
+        // Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        // Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        // Показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+
     
 }
 
