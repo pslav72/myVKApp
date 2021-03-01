@@ -9,12 +9,10 @@ import UIKit
 
 class ListGroupsTableViewController: UITableViewController {
     
-    var groups = [
-        Group(name: "Cats", image: UIImage(named: "iconCat")),
-        Group(name: "Dogs", image: UIImage(named: "iconDog")),
-        Group(name: "Flowers", image: UIImage(named: "iconFlower")),
-        Group(name: "Cars", image: UIImage(named: "iconCar")),
+    var activeGroup = [
+        Group(name: "New", image: UIImage(named: "iconCat"))
     ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +22,28 @@ class ListGroupsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ShowAvailableGroupsSegue",
+//           let senderCell = sender as? FriendsCell,
+//           let cellIndexPath = tableView.indexPath(for: senderCell),
+//           let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
+//            let selectedFriends = friends[cellIndexPath.row]
+//            friendsCollectionViewController.varFriends = selectedFriends
+//        }
+//    }
+    
+    @IBAction func addGroup(segue: UIStoryboardSegue) {
+        if let addGroupTableViewController = segue.source as? AddGroupTableViewController,
+           let selectedIndexPath = addGroupTableViewController.tableView.indexPathForSelectedRow {
+            let selectedGroup = addGroupTableViewController.groups[selectedIndexPath.row]
+            
+            if !activeGroup.contains(selectedGroup) {
+                activeGroup.append(selectedGroup)
+                tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -35,15 +55,16 @@ class ListGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return activeGroup.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CellGroup", for: indexPath) as? ListGroupsTableViewCell else { return UITableViewCell()}
-        
-        cell.groupsLabel.text = groups[indexPath.row].name
-        cell.groupsImage.image = groups[indexPath.row].image
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CellSelectedGroup", for: indexPath) as? ListGroupsTableViewCell else { return UITableViewCell()}
+
+        cell.groupsLabel.text = activeGroup[indexPath.row].name
+        cell.groupsImage.image = activeGroup[indexPath.row].image
+        cell.groupsImage.backgroundColor = UIColor.red
 
         return cell
     }
@@ -57,17 +78,14 @@ class ListGroupsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            activeGroup.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+//            tableView.reloadData()
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

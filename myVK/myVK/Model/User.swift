@@ -7,7 +7,15 @@
 
 import UIKit
 
-struct User {
+struct User: Equatable {
     let name: String
     let image: UIImage?
+    let photos: [UserPhotos]
+}
+
+struct UserPhotos: Equatable {
+    let image: UIImage?
+    let description: String
+    let like: Bool
+    let countsLike: Int
 }

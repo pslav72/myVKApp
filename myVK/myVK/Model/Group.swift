@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Group {
+struct Group: Equatable {
     let name: String
     let image: UIImage?
 }
