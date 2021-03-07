@@ -133,6 +133,7 @@
                     <connections>
                         <segue destination="aKw-E4-XSC" kind="relationship" relationship="viewControllers" id="yuQ-Kz-wUh"/>
                         <segue destination="Wwa-Ar-J4Q" kind="relationship" relationship="viewControllers" id="Gel-cc-fGA"/>
+                        <segue destination="FQ9-fb-zHB" kind="relationship" relationship="viewControllers" id="9EG-TJ-5rt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdT-BS-fYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -146,7 +147,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PB2-TS-4CW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellFriend" rowHeight="90" id="kzJ-a7-WBo" customClass="FriendsCell" customModule="myVK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
@@ -208,7 +209,6 @@
                                 <connections>
                                     <outlet property="friendsLabel" destination="vTn-CC-zAw" id="5I8-0t-Gs8"/>
                                     <outlet property="friendsViewImage" destination="2S9-iv-Tj5" id="EzK-IK-RkI"/>
-                                    <segue destination="jDL-yJ-qpK" kind="show" identifier="ShowFriendImageSegue" id="aIx-cI-z4p"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -218,6 +218,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Odj-LH-Iht"/>
+                    <connections>
+                        <segue destination="jDL-yJ-qpK" kind="show" identifier="ShowFriendImageSegue" id="bkx-nV-6G3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSC-ot-lhf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -382,6 +385,52 @@
             </objects>
             <point key="canvasLocation" x="1292.753623188406" y="403.79464285714283"/>
         </scene>
+        <!--News Table View Controller-->
+        <scene sceneID="3vO-A7-aj2">
+            <objects>
+                <tableViewController id="onJ-uy-C2m" customClass="NewsTableViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UR8-IL-c5E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sVs-Hj-5Qg">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVs-Hj-5Qg" id="krA-6x-gOt">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="onJ-uy-C2m" id="f9B-sH-N5Q"/>
+                            <outlet property="delegate" destination="onJ-uy-C2m" id="cos-GN-6eb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="QNh-oc-e3g"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9L8-dd-vrh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-259" y="1143"/>
+        </scene>
+        <!--Новости-->
+        <scene sceneID="Kal-xV-T5C">
+            <objects>
+                <navigationController id="FQ9-fb-zHB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Новости" image="folder" catalog="system" id="rkQ-aE-Us7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Ca-3U-c3D">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="onJ-uy-C2m" kind="relationship" relationship="rootViewController" id="Pto-a2-wlT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XS-AW-0Th" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-259" y="404"/>
+        </scene>
         <!--Группы-->
         <scene sceneID="y8y-sZ-xwN">
             <objects>
@@ -397,7 +446,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZQn-1m-BmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="529" y="405"/>
+            <point key="canvasLocation" x="529" y="404"/>
         </scene>
         <!--Add Group Table View Controller-->
         <scene sceneID="nZm-EM-41d">
@@ -451,6 +500,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="soe-eq-Naf"/>
+                    <connections>
+                        <segue destination="TSN-dH-maw" kind="unwind" identifier="AddGroupsSegue" unwindAction="addGroupWithSegue:" id="Fb4-xk-Ajn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vF0-s7-AU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TSN-dH-maw" userLabel="Exit" sceneMemberID="exit"/>
@@ -471,6 +523,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

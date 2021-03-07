@@ -19,3 +19,12 @@ struct UserPhotos: Equatable {
     let like: Bool
     let countsLike: Int
 }
+
+struct UserSection: Comparable {
+    static func < (lhs: UserSection, rhs: UserSection) -> Bool {
+        lhs.title < rhs.title
+    }
+    
+    let title: Character
+    let users: [User]
+}

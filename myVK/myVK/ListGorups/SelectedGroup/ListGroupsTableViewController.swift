@@ -16,23 +16,11 @@ class ListGroupsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ShowAvailableGroupsSegue",
-//           let senderCell = sender as? FriendsCell,
-//           let cellIndexPath = tableView.indexPath(for: senderCell),
-//           let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
-//            let selectedFriends = friends[cellIndexPath.row]
-//            friendsCollectionViewController.varFriends = selectedFriends
-//        }
-//    }
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if let addGroupTableViewController = segue.source as? AddGroupTableViewController,
@@ -57,26 +45,16 @@ class ListGroupsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return activeGroup.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CellSelectedGroup", for: indexPath) as? ListGroupsTableViewCell else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
 
-        cell.groupsLabel.text = activeGroup[indexPath.row].name
-        cell.groupsImage.image = activeGroup[indexPath.row].image
-        cell.groupsImage.backgroundColor = UIColor.red
+        cell.configure(with: activeGroup[indexPath.row])
 
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -85,6 +63,8 @@ class ListGroupsTableViewController: UITableViewController {
 //            tableView.reloadData()
         }
     }
+    
+    
     
 
     /*
