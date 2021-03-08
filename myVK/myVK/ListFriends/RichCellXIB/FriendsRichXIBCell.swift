@@ -12,39 +12,55 @@ class FriendsRichXIBCell: UITableViewCell {
     static let reuseIdentifier = "FriendsRichXIBCell"
     static let nibName = "FriendsRichXIBCell"
     
-    @IBOutlet var friendsImageView: UIImageView! {
+    @IBOutlet var friendsImageButton: UIButton! {
         didSet {
-            self.friendsImageView.layer.backgroundColor = UIColor.systemFill.cgColor
+            self.friendsImageButton.layer.backgroundColor = UIColor.systemFill.cgColor
         }
     }
     @IBOutlet var friendsShadowView: UIView!
     @IBOutlet var friendsNameLabel: UILabel!
+    
+    @IBAction func buttonPressedFriendsImage() {
+        
+        UIView.animate(withDuration: 3, delay: 0, options: [.curveEaseInOut]) {
+            [self] in
+            let affineScaleX: CGFloat = 0.2
+            let affineScaleY: CGFloat = 0.2
+            friendsImageButton.transform = CGAffineTransform(scaleX: affineScaleX, y: affineScaleY)
+            friendsShadowView.transform = CGAffineTransform(scaleX: affineScaleX, y: affineScaleY)
+        } completion: { _ in
+            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: []) {
+                self.friendsImageButton.transform = .identity
+                self.friendsShadowView.transform = .identity
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        friendsImageView.clipsToBounds = true
+        friendsImageButton.clipsToBounds = true
         friendsShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
         friendsShadowView.layer.shadowRadius = 3
         friendsShadowView.layer.shadowOpacity = 0.8
+        
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        friendsImageView.layer.cornerRadius = friendsImageView.bounds.width/2
+        friendsImageButton.layer.cornerRadius = friendsImageButton.bounds.width/2
         friendsShadowView.layer.cornerRadius = friendsShadowView.bounds.width/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     public func configure(with friends: User) {
         friendsNameLabel.text = friends.name
-        friendsImageView.image = friends.image
+        friendsImageButton.setBackgroundImage(friends.image, for: [])
+        
     }
     
 }

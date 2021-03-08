@@ -12,8 +12,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet var lognTextFiled: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-    
     @IBOutlet var scrollView: UIScrollView!
+    
+    @IBOutlet var progressLoadView1: UIView!
+    @IBOutlet var progressLoadView2: UIView!
+    @IBOutlet var progressLoadView3: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,25 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Второе — когда она пропадает
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let animateDuration: TimeInterval = 1
+        
+        progressLoadView1.backgroundColor = .systemBlue
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView1, colorBackground: .systemRed, withAnimtedDuration: animateDuration, delayAnimated: 0)
+        progressLoadView2.backgroundColor = .systemGreen
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView2, colorBackground: .systemIndigo, withAnimtedDuration: animateDuration, delayAnimated: 0.3)
+        progressLoadView3.backgroundColor = .systemRed
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView3, colorBackground: .systemYellow, withAnimtedDuration: animateDuration, delayAnimated: 0.7)
+    }
+    
+    func progressLoadAnimatedButtom (viewAnimated view: UIView, colorBackground color: UIColor, withAnimtedDuration withDuration: TimeInterval, delayAnimated delay: TimeInterval) {
+        UIView.animate(withDuration: withDuration, delay: delay, options: [.repeat]) {
+            [self] in
+            view.backgroundColor = color
+            view.bounds = CGRect(x: 0, y: 0, width: 1, height: 1)
+//            view.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+            view.alpha = 0.1
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

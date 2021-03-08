@@ -43,6 +43,10 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         
         friendLikeButton.setImage(UIImage(systemName: heartImage), for: .normal)
         friendLikeCount.text = String(countsLike)
+        
+        UIView.transition(with: friendLikeButton, duration: 3, options: [.transitionFlipFromTop]) {
+        } completion: { _ in
+        }
     }
     
 }
