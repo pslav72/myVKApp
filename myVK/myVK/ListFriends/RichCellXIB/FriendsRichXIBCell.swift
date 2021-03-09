@@ -12,16 +12,54 @@ class FriendsRichXIBCell: UITableViewCell {
     static let reuseIdentifier = "FriendsRichXIBCell"
     static let nibName = "FriendsRichXIBCell"
     
-    @IBOutlet var friendsImageButton: UIButton! {
+    private lazy var imageFriends​TapGestureRecognizer: UITapGestureRecognizer = {
+        let imageFriendsTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(actionTapImageFriends))
+        imageFriendsTapRecogniser.numberOfTapsRequired = 1
+        imageFriendsTapRecogniser.numberOfTouchesRequired = 1
+        return imageFriendsTapRecogniser
+    } ()
+            
+    
+    @IBOutlet var friendsImageButton: UIImageView! {
         didSet {
             self.friendsImageButton.layer.backgroundColor = UIColor.systemFill.cgColor
         }
     }
     @IBOutlet var friendsShadowView: UIView!
     @IBOutlet var friendsNameLabel: UILabel!
-    
-    @IBAction func buttonPressedFriendsImage() {
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        friendsImageButton.clipsToBounds = true
+        friendsShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
+        friendsShadowView.layer.shadowRadius = 3
+        friendsShadowView.layer.shadowOpacity = 0.8
+        friendsImageButton.isUserInteractionEnabled = true
+        friendsImageButton.addGestureRecognizer(imageFriends​TapGestureRecognizer)
         
+    }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        friendsImageButton.layer.cornerRadius = friendsImageButton.bounds.width/2
+        friendsShadowView.layer.cornerRadius = friendsShadowView.bounds.width/2
+    }
+
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    
+    public func configure(with friends: User) {
+        friendsNameLabel.text = friends.name
+        friendsImageButton.image = friends.image
+    }
+    
+    
+    @objc func actionTapImageFriends() {
         UIView.animate(withDuration: 3, delay: 0, options: [.curveEaseInOut]) {
             [self] in
             let affineScaleX: CGFloat = 0.2
@@ -35,32 +73,4 @@ class FriendsRichXIBCell: UITableViewCell {
             }
         }
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        friendsImageButton.clipsToBounds = true
-        friendsShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
-        friendsShadowView.layer.shadowRadius = 3
-        friendsShadowView.layer.shadowOpacity = 0.8
-        
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        friendsImageButton.layer.cornerRadius = friendsImageButton.bounds.width/2
-        friendsShadowView.layer.cornerRadius = friendsShadowView.bounds.width/2
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    public func configure(with friends: User) {
-        friendsNameLabel.text = friends.name
-        friendsImageButton.setBackgroundImage(friends.image, for: [])
-        
-    }
-    
 }

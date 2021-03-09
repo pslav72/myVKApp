@@ -18,42 +18,39 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eH-Ha-ogU">
-                        <rect key="frame" x="20" y="12" width="80" height="80"/>
+                        <rect key="frame" x="20" y="11" width="80" height="80"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-wF-rrH">
-                        <rect key="frame" x="20" y="12" width="80" height="80"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-lx-ejT">
+                        <rect key="frame" x="20" y="11" width="80" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="v6T-wF-rrH" secondAttribute="height" multiplier="1:1" id="0eQ-j4-ejP"/>
-                            <constraint firstAttribute="width" constant="80" id="JKE-n2-Cn0"/>
+                            <constraint firstAttribute="height" constant="80" id="6in-AT-Xjg"/>
+                            <constraint firstAttribute="width" secondItem="fTl-lx-ejT" secondAttribute="height" multiplier="1:1" id="ZYH-lo-VCz"/>
                         </constraints>
-                        <connections>
-                            <action selector="buttonPressedFriendsImage" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FCJ-qg-V5I"/>
-                        </connections>
-                    </button>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6Y-cd-FC7">
-                        <rect key="frame" x="116" y="42" width="341" height="20.5"/>
+                        <rect key="frame" x="116" y="41" width="341" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="S6Y-cd-FC7" firstAttribute="centerY" secondItem="v6T-wF-rrH" secondAttribute="centerY" id="3cI-kc-RU6"/>
                     <constraint firstItem="S6Y-cd-FC7" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="16" id="3kF-x1-PML"/>
-                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="trailing" secondItem="v6T-wF-rrH" secondAttribute="trailing" id="4PS-y0-No1"/>
-                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="top" secondItem="v6T-wF-rrH" secondAttribute="top" id="6vH-Nw-k8X"/>
-                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="bottom" secondItem="v6T-wF-rrH" secondAttribute="bottom" id="9ky-7u-ggW"/>
-                    <constraint firstItem="v6T-wF-rrH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="CGO-GG-opf"/>
-                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="leading" secondItem="v6T-wF-rrH" secondAttribute="leading" id="Pth-NX-P65"/>
-                    <constraint firstItem="S6Y-cd-FC7" firstAttribute="leading" secondItem="v6T-wF-rrH" secondAttribute="trailing" constant="16" id="cDt-RX-mJx"/>
-                    <constraint firstItem="v6T-wF-rrH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="i4j-dF-eHl"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="v6T-wF-rrH" secondAttribute="bottom" priority="999" constant="12" id="ijb-O3-ngd"/>
+                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="bottom" secondItem="fTl-lx-ejT" secondAttribute="bottom" id="4Vp-WL-Pq5"/>
+                    <constraint firstItem="S6Y-cd-FC7" firstAttribute="leading" secondItem="fTl-lx-ejT" secondAttribute="trailing" constant="16" id="8iQ-gh-d74"/>
+                    <constraint firstItem="S6Y-cd-FC7" firstAttribute="centerY" secondItem="fTl-lx-ejT" secondAttribute="centerY" id="MhP-lg-XbZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="fTl-lx-ejT" secondAttribute="bottom" priority="999" id="ZxD-ec-hFQ"/>
+                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="leading" secondItem="fTl-lx-ejT" secondAttribute="leading" id="e4q-m8-e4Y"/>
+                    <constraint firstItem="fTl-lx-ejT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="nvc-Li-BRy"/>
+                    <constraint firstItem="fTl-lx-ejT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oYd-Ks-anS"/>
+                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="top" secondItem="fTl-lx-ejT" secondAttribute="top" id="omS-eH-ZWK"/>
+                    <constraint firstItem="8eH-Ha-ogU" firstAttribute="trailing" secondItem="fTl-lx-ejT" secondAttribute="trailing" id="y9p-he-7DT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="friendsImageButton" destination="v6T-wF-rrH" id="2uZ-hk-zgF"/>
+                <outlet property="friendsImageButton" destination="fTl-lx-ejT" id="yZn-kc-5Nr"/>
                 <outlet property="friendsNameLabel" destination="S6Y-cd-FC7" id="aqm-TR-Jzb"/>
                 <outlet property="friendsShadowView" destination="8eH-Ha-ogU" id="rz6-fW-a1D"/>
             </connections>

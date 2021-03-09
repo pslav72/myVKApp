@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,42 +13,45 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupsRichXIBCell" rowHeight="395" id="KGk-i7-Jjw" customClass="GroupsRichXIBCell" customModule="myVK" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="436" height="395"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="436" height="395"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRO-6a-711">
-                        <rect key="frame" x="116" y="42" width="284" height="20.5"/>
+                        <rect key="frame" x="116" y="41" width="284" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWM-Bm-05h">
-                        <rect key="frame" x="20" y="12" width="80" height="80"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiH-Fg-0hu" customClass="UIImageView">
+                        <rect key="frame" x="20" y="11" width="80" height="80"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="gWM-Bm-05h" secondAttribute="height" multiplier="1:1" id="erR-fb-8Rg"/>
-                            <constraint firstAttribute="height" constant="80" id="njR-ix-lPt"/>
+                            <constraint firstAttribute="width" secondItem="MiH-Fg-0hu" secondAttribute="height" multiplier="1:1" id="UHu-hB-Tb9"/>
+                            <constraint firstAttribute="height" constant="80" id="lPR-e0-b11"/>
                         </constraints>
-                        <connections>
-                            <action selector="buttonPressedFriendsImage" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VdC-e3-5AE"/>
-                        </connections>
-                    </button>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="qRO-6a-711" firstAttribute="centerY" secondItem="gWM-Bm-05h" secondAttribute="centerY" id="gRH-QG-Jy8"/>
-                    <constraint firstItem="qRO-6a-711" firstAttribute="leading" secondItem="gWM-Bm-05h" secondAttribute="trailing" constant="16" id="hWS-m2-j83"/>
+                    <constraint firstItem="MiH-Fg-0hu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7Yg-V6-Jta"/>
+                    <constraint firstItem="qRO-6a-711" firstAttribute="leading" secondItem="MiH-Fg-0hu" secondAttribute="trailing" constant="16" id="M3a-KG-U1K"/>
+                    <constraint firstItem="MiH-Fg-0hu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Uq7-hx-S6F"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MiH-Fg-0hu" secondAttribute="bottom" priority="999" id="bSI-zb-rp4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qRO-6a-711" secondAttribute="trailing" constant="16" id="iZ2-OQ-RIW"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="gWM-Bm-05h" secondAttribute="bottom" constant="12" id="m0Y-xN-aao"/>
-                    <constraint firstItem="gWM-Bm-05h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="n6e-Ra-3K0"/>
-                    <constraint firstItem="gWM-Bm-05h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="qNQ-dd-PSG"/>
+                    <constraint firstItem="qRO-6a-711" firstAttribute="centerY" secondItem="MiH-Fg-0hu" secondAttribute="centerY" id="lgT-fk-ljV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="groupsButtomImage" destination="gWM-Bm-05h" id="7lU-5d-gAm"/>
+                <outlet property="groupsImageView" destination="MiH-Fg-0hu" id="hTa-eh-Cvx"/>
                 <outlet property="groupsNameLabel" destination="qRO-6a-711" id="mDX-uH-R88"/>
             </connections>
             <point key="canvasLocation" x="73.913043478260875" y="197.20982142857142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
