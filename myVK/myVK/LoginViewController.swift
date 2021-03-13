@@ -39,11 +39,11 @@ class LoginViewController: UIViewController {
         let animateDuration: TimeInterval = 1
         
         progressLoadView1.backgroundColor = .systemBlue
-        progressLoadAnimatedButtom(viewAnimated: progressLoadView1, colorBackground: .systemRed, withAnimtedDuration: animateDuration, delayAnimated: 0)
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView1, colorBackground: .systemRed, withAnimtedDuration: animateDuration, delayAnimated: 0.1)
         progressLoadView2.backgroundColor = .systemGreen
-        progressLoadAnimatedButtom(viewAnimated: progressLoadView2, colorBackground: .systemIndigo, withAnimtedDuration: animateDuration, delayAnimated: 0.3)
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView2, colorBackground: .systemIndigo, withAnimtedDuration: animateDuration, delayAnimated: 0)
         progressLoadView3.backgroundColor = .systemRed
-        progressLoadAnimatedButtom(viewAnimated: progressLoadView3, colorBackground: .systemYellow, withAnimtedDuration: animateDuration, delayAnimated: 0.7)
+        progressLoadAnimatedButtom(viewAnimated: progressLoadView3, colorBackground: .systemYellow, withAnimtedDuration: animateDuration, delayAnimated: 0.2)
     }
     
     func progressLoadAnimatedButtom (viewAnimated view: UIView, colorBackground color: UIColor, withAnimtedDuration withDuration: TimeInterval, delayAnimated delay: TimeInterval) {

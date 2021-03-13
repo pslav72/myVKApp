@@ -71,8 +71,15 @@ class ListFriendsViewController: UITableViewController {
         if segue.identifier == "ShowFriendImageSegue",
            let cellIndexPath = tableView.indexPathForSelectedRow,
            let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
-            let selectedFriends = friends[cellIndexPath.row]
+            let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row]
             friendsCollectionViewController.varFriends = selectedFriends
+        }
+        
+        if segue.identifier == "ShowFriendPhotoSegue",
+           let cellIndexPath = tableView.indexPathForSelectedRow,
+           let friendsPhotosViewController = segue.destination as? FriendsPhotosViewController {
+            let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row].photos
+            friendsPhotosViewController.friendArrayPhotos = selectedFriends
         }
     }
     
@@ -93,16 +100,12 @@ class ListFriendsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendsRichXIBCell.reuseIdentifier, for: indexPath) as? FriendsRichXIBCell else { return UITableViewCell() }
         
-//        cell.configure(with: friends[indexPath.row])
         cell.configure(with: sectionedUsers[indexPath.section].users[indexPath.row])
         cell.selectionStyle = .none
         
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-////        String(sectionedUsers[section].title)
-//    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: UserFirstLetterHeaderView.reuseIdentifier) as? UserFirstLetterHeaderView else { return nil}
@@ -113,8 +116,12 @@ class ListFriendsViewController: UITableViewController {
         return header
     }
     
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
+//    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
+        performSegue(withIdentifier: "ShowFriendPhotoSegue", sender: nil)
     }
     
 }
