@@ -358,7 +358,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2077" y="-1002"/>
+            <point key="canvasLocation" x="2048" y="-317"/>
         </scene>
         <!--Friends Collection View Controller-->
         <scene sceneID="XKN-qg-DHc">
@@ -438,12 +438,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyS-uo-zUS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="-317"/>
+            <point key="canvasLocation" x="4220" y="-506"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="DPp-63-l8e">
             <objects>
-                <navigationController id="aKw-E4-XSC" sceneMemberID="viewController">
+                <navigationController id="aKw-E4-XSC" customClass="UserAnimationNavigationController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person" catalog="system" id="1PK-ea-YbW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h9P-og-ZHV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

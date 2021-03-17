@@ -15,6 +15,9 @@
 		D101BB3E25D58AF10038052B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */; };
 		D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAD2725E6ADAB00C7C564 /* AddGroupTableViewController.swift */; };
 		D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAD2B25E6AEE200C7C564 /* AddGroupTableViewCell.swift */; };
+		D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128065C25FFB44B008C9F07 /* UserAnimationNavigationController.swift */; };
+		D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128066025FFB6B4008C9F07 /* TopRigthRotateAnimation.swift */; };
+		D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */; };
 		D13277F525E021710071EF0E /* ListFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F425E021710071EF0E /* ListFriendsViewController.swift */; };
 		D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F925E022750071EF0E /* FriendsCell.swift */; };
 		D132780125E02A560071EF0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D132780025E02A560071EF0E /* User.swift */; };
@@ -50,6 +53,9 @@
 		D101BB3F25D58AF10038052B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D10DAD2725E6ADAB00C7C564 /* AddGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewController.swift; sourceTree = "<group>"; };
 		D10DAD2B25E6AEE200C7C564 /* AddGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D128065C25FFB44B008C9F07 /* UserAnimationNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnimationNavigationController.swift; sourceTree = "<group>"; };
+		D128066025FFB6B4008C9F07 /* TopRigthRotateAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRigthRotateAnimation.swift; sourceTree = "<group>"; };
+		D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionAnimator.swift; sourceTree = "<group>"; };
 		D13277F425E021710071EF0E /* ListFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendsViewController.swift; sourceTree = "<group>"; };
 		D13277F925E022750071EF0E /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		D132780025E02A560071EF0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D128065B25FFB408008C9F07 /* Animation */,
 				D1CEB49125F2A76C00A6A25C /* News */,
 				D134D7D825E161DF0064E780 /* Model */,
 				D101BB3125D58AEF0038052B /* AppDelegate.swift */,
@@ -136,6 +143,16 @@
 				D10DAD2B25E6AEE200C7C564 /* AddGroupTableViewCell.swift */,
 			);
 			path = AvalibaleGroup;
+			sourceTree = "<group>";
+		};
+		D128065B25FFB408008C9F07 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				D128065C25FFB44B008C9F07 /* UserAnimationNavigationController.swift */,
+				D128066025FFB6B4008C9F07 /* TopRigthRotateAnimation.swift */,
+				D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		D13277FC25E0227D0071EF0E /* ListFriends */ = {
@@ -293,6 +310,7 @@
 				D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */,
 				D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */,
 				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
+				D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */,
 				D183E2A925F2A33300D3D30F /* GroupSearchBar.swift in Sources */,
 				D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */,
 				D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */,
@@ -305,8 +323,10 @@
 				D134D7EA25E40D840064E780 /* ListGroupsTableViewController.swift in Sources */,
 				D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */,
 				D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */,
+				D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */,
 				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
 				D132780125E02A560071EF0E /* User.swift in Sources */,
+				D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */,
 				D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
