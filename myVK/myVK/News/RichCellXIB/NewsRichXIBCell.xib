@@ -114,7 +114,7 @@
                             <constraint firstItem="HRo-mV-vCE" firstAttribute="centerY" secondItem="jPr-y9-rq0" secondAttribute="centerY" constant="-10" id="LnX-E9-1P3"/>
                             <constraint firstItem="z9z-j2-Qch" firstAttribute="centerX" secondItem="9ca-a4-GIp" secondAttribute="centerX" id="MBx-Da-9MX"/>
                             <constraint firstItem="xpg-cv-FnN" firstAttribute="centerY" secondItem="jPr-y9-rq0" secondAttribute="centerY" constant="10" id="PQ5-Dj-KDy"/>
-                            <constraint firstAttribute="height" constant="80" id="QQe-Mw-Lik"/>
+                            <constraint firstAttribute="height" priority="999" constant="80" id="QQe-Mw-Lik"/>
                             <constraint firstItem="HRo-mV-vCE" firstAttribute="height" secondItem="9ca-a4-GIp" secondAttribute="height" id="QXG-tR-3la"/>
                             <constraint firstItem="wJo-Vx-A5h" firstAttribute="centerY" secondItem="jPr-y9-rq0" secondAttribute="centerY" constant="10" id="Rtj-9a-NnH"/>
                             <constraint firstItem="vpn-Nm-qgI" firstAttribute="centerY" secondItem="jPr-y9-rq0" secondAttribute="centerY" constant="5" id="SHc-ml-XXo"/>
