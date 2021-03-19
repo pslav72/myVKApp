@@ -13,9 +13,15 @@ class ListGroupsTableViewController: UITableViewController {
         Group(name: "New", image: UIImage(named: "iconCat"))
     ]
     
+    var searchActiveGroup : Bool = false
+    var filteredGroup : [Group] = []
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         
         tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
 
@@ -29,67 +35,95 @@ class ListGroupsTableViewController: UITableViewController {
             
             if !activeGroup.contains(selectedGroup) {
                 activeGroup.append(selectedGroup)
+//                returnFromAddGroup = true
+                filteredGroup.removeAll()
+                searchActiveGroup = false
                 tableView.reloadData()
             }
         }
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return activeGroup.count
+        if searchActiveGroup, filteredGroup.count > 0 {
+            return filteredGroup.count
+        } else {
+            return activeGroup.count
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
-
-        cell.configure(with: activeGroup[indexPath.row])
+        if searchActiveGroup, filteredGroup.count > 0 {
+            cell.configure(with: filteredGroup[indexPath.row])
+        } else {
+            cell.configure(with: activeGroup[indexPath.row])
+        }
 
         return cell
     }
     
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        searchActiveGroup = false
+        filteredGroup.removeAll()
+        searchBar.resignFirstResponder()
         if editingStyle == .delete {
+            if filteredGroup.count > 0 {
+                searchBar.showsCancelButton = false
+                searchBar.text = nil
+                filteredGroup.removeAll()
+                searchActiveGroup = false
+            }
             activeGroup.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
 //            tableView.reloadData()
         }
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActiveGroup = false
+        searchBar.showsCancelButton = true
+    }
     
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        filteredGroup.removeAll()
+        searchActiveGroup = false
+        }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        filteredGroup.removeAll()
+        searchActiveGroup = false
+        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        filteredGroup = activeGroup.filter{$0.name == searchText}
+        
+        if(filteredGroup.count == 0){
+            searchActiveGroup = false
+        } else {
+            searchActiveGroup = true
+        }
+        tableView.reloadData()
     }
-    */
+    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension ListGroupsTableViewController: UISearchBarDelegate {
 }

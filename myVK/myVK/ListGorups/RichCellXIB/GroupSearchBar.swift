@@ -16,5 +16,4 @@ class GroupSearchBar: UISearchBar {
         // Drawing code
     }
     */
-
 }
