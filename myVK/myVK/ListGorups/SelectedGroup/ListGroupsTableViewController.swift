@@ -16,12 +16,12 @@ class ListGroupsTableViewController: UITableViewController {
     var searchActiveGroup : Bool = false
     var filteredGroup : [Group] = []
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var groupSearchBar: UISearchBar!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
+        groupSearchBar.delegate = self
         
         tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
 
@@ -74,11 +74,11 @@ class ListGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         searchActiveGroup = false
         filteredGroup.removeAll()
-        searchBar.resignFirstResponder()
+        groupSearchBar.resignFirstResponder()
         if editingStyle == .delete {
             if filteredGroup.count > 0 {
-                searchBar.showsCancelButton = false
-                searchBar.text = nil
+                groupSearchBar.showsCancelButton = false
+                groupSearchBar.text = nil
                 filteredGroup.removeAll()
                 searchActiveGroup = false
             }
