@@ -31,6 +31,7 @@
 		D134D7FD25E53BE30064E780 /* GradientMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7FC25E53BE30064E780 /* GradientMainView.swift */; };
 		D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */; };
 		D14A4AEB25F13D8600F55D27 /* GroupsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */; };
+		D150351A26073D2A0048CA1D /* sessionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D150351926073D2A0048CA1D /* sessionsUser.swift */; };
 		D17C4AFF25F3E437001603AE /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C4AFE25F3E437001603AE /* News.swift */; };
 		D183046125F92A73006CB07F /* FriendsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D183046025F92A73006CB07F /* FriendsPhotosViewController.swift */; };
 		D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D183E2A425F273F100D3D30F /* UserFirstLetterHeaderView.swift */; };
@@ -69,6 +70,7 @@
 		D134D7FC25E53BE30064E780 /* GradientMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMainView.swift; sourceTree = "<group>"; };
 		D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRichXIBCell.swift; sourceTree = "<group>"; };
 		D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsRichXIBCell.xib; sourceTree = "<group>"; };
+		D150351926073D2A0048CA1D /* sessionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionsUser.swift; sourceTree = "<group>"; };
 		D17C4AFE25F3E437001603AE /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		D183046025F92A73006CB07F /* FriendsPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosViewController.swift; sourceTree = "<group>"; };
 		D183E2A425F273F100D3D30F /* UserFirstLetterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFirstLetterHeaderView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D150351826073D0E0048CA1D /* Sessions */,
 				D128065B25FFB408008C9F07 /* Animation */,
 				D1CEB49125F2A76C00A6A25C /* News */,
 				D134D7D825E161DF0064E780 /* Model */,
@@ -210,6 +213,14 @@
 			path = RichCellXIB;
 			sourceTree = "<group>";
 		};
+		D150351826073D0E0048CA1D /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				D150351926073D2A0048CA1D /* sessionsUser.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
 		D1CEB49125F2A76C00A6A25C /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +319,7 @@
 				D1B7F22225EFE9F300B64BE8 /* FriendsRichXIBCell.swift in Sources */,
 				D134D7DB25E1626D0064E780 /* Group.swift in Sources */,
 				D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */,
+				D150351A26073D2A0048CA1D /* sessionsUser.swift in Sources */,
 				D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */,
 				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
 				D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */,
