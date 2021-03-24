@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,9 +29,13 @@
 		D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7F425E520C50064E780 /* FriendsCellImageView.swift */; };
 		D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7F825E520DB0064E780 /* FriendsCellImageViewSubView.swift */; };
 		D134D7FD25E53BE30064E780 /* GradientMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7FC25E53BE30064E780 /* GradientMainView.swift */; };
+		D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D13AAE062608F0B8001F6DEC /* Alamofire */; };
+		D13AAE0B2608F4B6001F6DEC /* VKOauthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */; };
 		D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */; };
 		D14A4AEB25F13D8600F55D27 /* GroupsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */; };
-		D150351A26073D2A0048CA1D /* sessionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D150351926073D2A0048CA1D /* sessionsUser.swift */; };
+		D150351A26073D2A0048CA1D /* SessionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D150351926073D2A0048CA1D /* SessionsUser.swift */; };
+		D15CC83A260909D400EA0B09 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CC839260909D400EA0B09 /* VKApi.swift */; };
+		D15CC8412609116300EA0B09 /* VKApiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CC8402609116300EA0B09 /* VKApiTarget.swift */; };
 		D17C4AFF25F3E437001603AE /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C4AFE25F3E437001603AE /* News.swift */; };
 		D183046125F92A73006CB07F /* FriendsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D183046025F92A73006CB07F /* FriendsPhotosViewController.swift */; };
 		D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D183E2A425F273F100D3D30F /* UserFirstLetterHeaderView.swift */; };
@@ -68,9 +72,12 @@
 		D134D7F425E520C50064E780 /* FriendsCellImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellImageView.swift; sourceTree = "<group>"; };
 		D134D7F825E520DB0064E780 /* FriendsCellImageViewSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellImageViewSubView.swift; sourceTree = "<group>"; };
 		D134D7FC25E53BE30064E780 /* GradientMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMainView.swift; sourceTree = "<group>"; };
+		D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKOauthWebViewController.swift; sourceTree = "<group>"; };
 		D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRichXIBCell.swift; sourceTree = "<group>"; };
 		D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsRichXIBCell.xib; sourceTree = "<group>"; };
-		D150351926073D2A0048CA1D /* sessionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionsUser.swift; sourceTree = "<group>"; };
+		D150351926073D2A0048CA1D /* SessionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsUser.swift; sourceTree = "<group>"; };
+		D15CC839260909D400EA0B09 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
+		D15CC8402609116300EA0B09 /* VKApiTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApiTarget.swift; sourceTree = "<group>"; };
 		D17C4AFE25F3E437001603AE /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		D183046025F92A73006CB07F /* FriendsPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosViewController.swift; sourceTree = "<group>"; };
 		D183E2A425F273F100D3D30F /* UserFirstLetterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFirstLetterHeaderView.swift; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +120,8 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D15CC8372609098300EA0B09 /* APIWrapper */,
+				D13AAE092608F469001F6DEC /* WebView */,
 				D150351826073D0E0048CA1D /* Sessions */,
 				D128065B25FFB408008C9F07 /* Animation */,
 				D1CEB49125F2A76C00A6A25C /* News */,
@@ -193,6 +203,14 @@
 			path = ListGorups;
 			sourceTree = "<group>";
 		};
+		D13AAE092608F469001F6DEC /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		D14A4AED25F13D8E00F55D27 /* RichCellXIB */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,9 +234,18 @@
 		D150351826073D0E0048CA1D /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
-				D150351926073D2A0048CA1D /* sessionsUser.swift */,
+				D150351926073D2A0048CA1D /* SessionsUser.swift */,
 			);
 			path = Sessions;
+			sourceTree = "<group>";
+		};
+		D15CC8372609098300EA0B09 /* APIWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				D15CC839260909D400EA0B09 /* VKApi.swift */,
+				D15CC8402609116300EA0B09 /* VKApiTarget.swift */,
+			);
+			path = APIWrapper;
 			sourceTree = "<group>";
 		};
 		D1CEB49125F2A76C00A6A25C /* News */ = {
@@ -255,6 +282,9 @@
 			dependencies = (
 			);
 			name = myVK;
+			packageProductDependencies = (
+				D13AAE062608F0B8001F6DEC /* Alamofire */,
+			);
 			productName = myVK;
 			productReference = D101BB2E25D58AEF0038052B /* myVK.app */;
 			productType = "com.apple.product-type.application";
@@ -282,6 +312,9 @@
 				Base,
 			);
 			mainGroup = D101BB2525D58AEF0038052B;
+			packageReferences = (
+				D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = D101BB2F25D58AEF0038052B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -319,19 +352,22 @@
 				D1B7F22225EFE9F300B64BE8 /* FriendsRichXIBCell.swift in Sources */,
 				D134D7DB25E1626D0064E780 /* Group.swift in Sources */,
 				D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */,
-				D150351A26073D2A0048CA1D /* sessionsUser.swift in Sources */,
+				D150351A26073D2A0048CA1D /* SessionsUser.swift in Sources */,
 				D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */,
 				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
 				D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */,
 				D183E2A925F2A33300D3D30F /* GroupSearchBar.swift in Sources */,
 				D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */,
+				D15CC8412609116300EA0B09 /* VKApiTarget.swift in Sources */,
 				D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */,
 				D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */,
 				D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */,
 				D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */,
 				D101BB3225D58AEF0038052B /* AppDelegate.swift in Sources */,
+				D15CC83A260909D400EA0B09 /* VKApi.swift in Sources */,
 				D101BB3425D58AEF0038052B /* SceneDelegate.swift in Sources */,
 				D13277F525E021710071EF0E /* ListFriendsViewController.swift in Sources */,
+				D13AAE0B2608F4B6001F6DEC /* VKOauthWebViewController.swift in Sources */,
 				D134D7EA25E40D840064E780 /* ListGroupsTableViewController.swift in Sources */,
 				D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */,
 				D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */,
@@ -541,6 +577,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D13AAE062608F0B8001F6DEC /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D101BB2625D58AEF0038052B /* Project object */;
 }

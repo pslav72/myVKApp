@@ -9,6 +9,8 @@ import UIKit
 
 class ListGroupsTableViewController: UITableViewController {
     
+   
+    
     var activeGroup = [
         Group(name: "New", image: UIImage(named: "iconCat"))
     ]
@@ -24,6 +26,8 @@ class ListGroupsTableViewController: UITableViewController {
         groupSearchBar.delegate = self
         
         tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
+        
+        
 
     }
     

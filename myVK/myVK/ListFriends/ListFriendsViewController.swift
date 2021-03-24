@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class ListFriendsViewController: UITableViewController {
+    
+
     
     var friends = [
         User(name: "Oleg", image: UIImage(systemName: "person"), photos: [
@@ -63,7 +67,11 @@ class ListFriendsViewController: UITableViewController {
         
         tableView.register(UINib(nibName: FriendsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: FriendsRichXIBCell.reuseIdentifier)
         tableView.register(UserFirstLetterHeaderView.self, forHeaderFooterViewReuseIdentifier: UserFirstLetterHeaderView.reuseIdentifier)
-
+        
+        let vkApi = VKApi()
+        vkApi.vkFriendsGet()
+        
+        
     }
     
     
@@ -123,5 +131,6 @@ class ListFriendsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowFriendPhotoSegue", sender: nil)
     }
+    
     
 }

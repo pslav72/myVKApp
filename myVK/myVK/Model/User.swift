@@ -28,3 +28,17 @@ struct UserSection: Comparable {
     let title: Character
     let users: [User]
 }
+
+struct VK: Decodable {
+    let response: Response?
+}
+
+struct Response: Decodable {
+    let count: Int?
+    let items: [Items]?
+}
+
+struct Items: Decodable {
+    let first_name: String
+    let last_name: String
+}
