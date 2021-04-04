@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "FriendsCell"
     
-    var isLiked: Bool = false
+    var isLiked: Int = 0
     var countsLike: Int = 0
     var heartImage: String = "heart"
+    
+    var photoURL: String = ""
     
     @IBOutlet var friendCollectionImage: UIImageView!
     @IBOutlet var friendLikeButton: UIButton!
@@ -21,13 +24,17 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func configure(with friends: UserPhotos) {
         
-        countsLike = friends.countsLike
-        isLiked = friends.like
-        heartImage = isLiked ? "heart.fill" : "heart"
+        countsLike = friends.likes.count
+        isLiked = friends.likes.user_likes
+
+        if let indexPath = friends.sizes.firstIndex(where: {$0.type == "m"}) {
+            self.photoURL = friends.sizes[indexPath].url
+        }
         
-        friendCollectionImage.image = friends.image
+        heartImage = (isLiked != 0) ? "heart.fill" : "heart"
+
+        friendCollectionImage.kf.setImage(with: URL(string: photoURL))
         friendLikeCount.text = String(countsLike)
-        friendLikeButton.setTitle(friends.description, for: [])
         friendLikeButton.setImage(UIImage(systemName: heartImage), for: .normal)
         friendLikeButton.addTarget(self, action: #selector(buttonTappedLike), for: .touchUpInside)
         
@@ -36,10 +43,10 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     @objc private func buttonTappedLike(_ sender: UIButton) {
         
-        isLiked = isLiked ? false : true
+        isLiked = (isLiked != 0) ? 0 : 1
         
-        countsLike += isLiked ? 1 : -1
-        heartImage = isLiked ? "heart.fill" : "heart"
+        countsLike += (isLiked != 0) ? 1 : -1
+        heartImage = (isLiked != 0) ? "heart.fill" : "heart"
         
         friendLikeButton.setImage(UIImage(systemName: heartImage), for: .normal)
         friendLikeCount.text = String(countsLike)

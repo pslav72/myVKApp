@@ -291,7 +291,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Odj-LH-Iht"/>
                     <connections>
-                        <segue destination="Zpb-He-1I8" kind="show" identifier="ShowFriendPhotoSegue" id="2hv-2u-vXo"/>
+                        <segue destination="jDL-yJ-qpK" kind="show" identifier="ShowFriendImageSegue" id="UjD-DB-KUM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSC-ot-lhf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -303,18 +303,18 @@
             <objects>
                 <viewController id="Zpb-He-1I8" customClass="FriendsPhotosViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iFP-bs-O2i">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YU3-mx-Z9G">
-                                <rect key="frame" x="0.0" y="200.5" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="YU3-mx-Z9G" secondAttribute="height" multiplier="1:1" id="gh8-7k-DUc"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ps1-7O-xlR">
-                                <rect key="frame" x="0.0" y="200.5" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ps1-7O-xlR" secondAttribute="height" multiplier="1:1" id="nb9-NO-LaK"/>
@@ -324,7 +324,7 @@
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nr-sy-Dq5">
-                                <rect key="frame" x="0.0" y="724" width="414" height="35"/>
+                                <rect key="frame" x="0.0" y="827" width="414" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grU-Cd-nde">
                                         <rect key="frame" x="12" y="5" width="25" height="25"/>
@@ -394,14 +394,14 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2048" y="-317"/>
+            <point key="canvasLocation" x="2087" y="-975"/>
         </scene>
         <!--Friends Collection View Controller-->
         <scene sceneID="XKN-qg-DHc">
             <objects>
                 <collectionViewController id="jDL-yJ-qpK" customClass="FriendsCollectionViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DiS-2E-AAa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jm7-4r-9qE">
@@ -422,7 +422,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Uu3-6L-D2r" secondAttribute="height" multiplier="1:1" id="1BI-KQ-UQX"/>
-                                                <constraint firstAttribute="width" constant="100" id="qdc-M3-KrO"/>
+                                                <constraint firstAttribute="width" priority="999" constant="100" id="qdc-M3-KrO"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-km-Add">
@@ -474,7 +474,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyS-uo-zUS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4220" y="-506"/>
+            <point key="canvasLocation" x="2087" y="-289"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="DPp-63-l8e">
