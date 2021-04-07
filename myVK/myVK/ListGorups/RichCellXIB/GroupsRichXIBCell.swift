@@ -40,8 +40,7 @@ class GroupsRichXIBCell: UITableViewCell {
     
     public func configure(with groups: Group) {
         groupsNameLabel.text = groups.name
-//        groupsImageView.image = groups.image
-        groupsImageView.kf.setImage(with: groups.image)
+        groupsImageView.kf.setImage(with: URL(string: groups.image))
     }
     
     

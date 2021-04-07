@@ -21,21 +21,15 @@ class FriendsCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(#function)
-//        print(friend?.id)
-        
         vkApi.vkphotosGet(owner_id: friend?.id ?? 0, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(friendPhotos):
-                print(friendPhotos.count)
-//                print(friendPhotos)
                 self?.friendPhotos = friendPhotos
                 self?.collectionView.reloadData()
             }
         })
-//        print(self.friends)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
