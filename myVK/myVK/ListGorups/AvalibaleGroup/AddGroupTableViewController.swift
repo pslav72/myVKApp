@@ -13,15 +13,15 @@ class AddGroupTableViewController: UITableViewController {
     
     var groups: [Group] = []
     
-//    var groups = [
-//        Group(json: <#JSON#>, name: "Cats", image: UIImage(named: "iconCat")),
-//        Group(name: "Dogs", image: UIImage(named: "iconDog")),
-//        Group(name: "Flowers", image: UIImage(named: "iconFlower")),
-//        Group(name: "Cars", image: UIImage(named: "iconCar")),
-//    ]
+    var searchActiveGroup : Bool = false
+    var searchText: String = ""
+    
+    @IBOutlet weak var groupSearchBar: UISearchBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        groupSearchBar.delegate = self
         
         tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
 
@@ -30,27 +30,15 @@ class AddGroupTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        vkApi.vkGroupSearch(searchString: "mail.ru",completion: { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(groups):
-                self?.groups = groups
-                self?.tableView.reloadData()
-            }
-        })
-        print(self.groups)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return groups.count
     }
 
@@ -64,9 +52,48 @@ class AddGroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "AddGroupsSegue", sender: nil)
     }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActiveGroup = true
+        searchBar.showsCancelButton = true
+    }
+    
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        searchActiveGroup = false
+        groups.removeAll()
+        searchActiveGroup = false
+        }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "ShowAvailableGroupsSegue", sender: nil)
-//    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        groups.removeAll()
+        searchActiveGroup = false
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        self.searchText = searchText
+        
+        if searchText.count > 2 {
+            vkApi.vkGroupSearch(searchString: searchText,completion: { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(groups):
+                    self?.groups = groups
+                    self?.tableView.reloadData()
+                }
+            })
+        }
+    }
 
+}
+
+
+extension AddGroupTableViewController: UISearchBarDelegate {
+    
 }
