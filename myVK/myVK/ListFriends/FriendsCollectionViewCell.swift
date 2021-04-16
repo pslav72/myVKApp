@@ -24,8 +24,10 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func configure(with friends: UserPhotos) {
         
-        countsLike = friends.likes.count
-        isLiked = friends.likes.user_likes
+        guard let friendLikes = friends.likes else { return }
+        
+        countsLike = friendLikes.count
+        isLiked = friendLikes.user_likes
 
         if let indexPath = friends.sizes.firstIndex(where: {$0.type == "m"}) {
             self.photoURL = friends.sizes[indexPath].url

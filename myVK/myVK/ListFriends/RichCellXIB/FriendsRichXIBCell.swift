@@ -56,7 +56,7 @@ class FriendsRichXIBCell: UITableViewCell {
     
     public func configure(with friends: Friends) {
         friendsNameLabel.text = friends.name
-        friendsImageButton.kf.setImage(with: friends.photoURL)
+        friendsImageButton.kf.setImage(with: URL(string: friends.photoURL))
     }
     
     

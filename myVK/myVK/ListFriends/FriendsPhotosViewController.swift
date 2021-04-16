@@ -30,8 +30,9 @@ class FriendsPhotosViewController: UIViewController {
         friendsNextAppearingPhoto.isUserInteractionEnabled = true
         
         friendLikeCount.textColor = .systemBlue
-        friendLikeCount.text = String(friendArrayPhotos[currentPhotoIndex].likes.count)
-        print(friendArrayPhotos.count)
+//        friendLikeCount.text = String(friendArrayPhotos[currentPhotoIndex].likes.count)
+        friendLikeCount.text = String(0)
+//        print(friendArrayPhotos.count)
     }
     
     @IBAction func imageSwipeLeft(_ sender: UISwipeGestureRecognizer) {

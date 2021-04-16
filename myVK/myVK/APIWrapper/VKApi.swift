@@ -135,8 +135,8 @@ class VKApi {
             return
         }
         
-        print(#function)
-        print(owner_id, album_id)
+//        print(#function)
+//        print(owner_id, album_id)
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host

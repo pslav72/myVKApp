@@ -103,7 +103,7 @@ class ListFriendsViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         })
-        print(self.friends)
+//        print(self.friends)
     }
     
     
