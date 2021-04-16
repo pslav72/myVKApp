@@ -12,11 +12,6 @@ class ListGroupsTableViewController: UITableViewController {
     let vkApi = VKApi()
     
     var getApiGroup: Bool = false
-    
-//    var activeGroup = [
-//        Group(name: "New", image: UIImage(named: "iconCat"))
-//    ]
-    
     var activeGroup: [Group] = []
     
     var searchActiveGroup : Bool = false
@@ -25,7 +20,6 @@ class ListGroupsTableViewController: UITableViewController {
     
     @IBOutlet weak var groupSearchBar: UISearchBar!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         groupSearchBar.delegate = self
@@ -67,9 +61,6 @@ class ListGroupsTableViewController: UITableViewController {
         }
     }
 
-    
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -81,7 +72,6 @@ class ListGroupsTableViewController: UITableViewController {
             return activeGroup.count
         }
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
@@ -98,19 +88,20 @@ class ListGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if filteredGroup.count > 0 {
-//                groupSearchBar.showsCancelButton = false
-//                groupSearchBar.text = nil
-//                filteredGroup.removeAll()
-//                searchActiveGroup = false
-            let nameGroup = filteredGroup[indexPath.row].name
-
-            if let indexPathActiveGroup = activeGroup.firstIndex(where: {$0.name == nameGroup}) {
-                print(indexPathActiveGroup)
-                activeGroup.remove(at: indexPathActiveGroup)
-                filteredGroup.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.reloadData()
-            }
+                let nameGroup = filteredGroup[indexPath.row].name
+                
+                if let indexPathActiveGroup = activeGroup.firstIndex(where: {$0.name == nameGroup}) {
+                    print(indexPathActiveGroup)
+                    activeGroup.remove(at: indexPathActiveGroup)
+                    filteredGroup.remove(at: indexPath.row)
+                    if filteredGroup.count > 0 {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    } else {
+                        searchActiveGroup = false
+                        groupSearchBar.resignFirstResponder()
+                    }
+                    tableView.reloadData()
+                }
             } else {
                 activeGroup.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -124,18 +115,14 @@ class ListGroupsTableViewController: UITableViewController {
         searchBar.showsCancelButton = true
     }
     
-    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = nil
-        searchBar.resignFirstResponder()
         filteredGroup.removeAll()
         searchActiveGroup = false
         }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.text = nil
         searchBar.resignFirstResponder()
         filteredGroup.removeAll()
         searchActiveGroup = false
@@ -156,6 +143,7 @@ class ListGroupsTableViewController: UITableViewController {
     }
     
 }
+
 
 extension ListGroupsTableViewController: UISearchBarDelegate {
 }
