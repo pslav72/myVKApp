@@ -9,12 +9,19 @@ import UIKit
 
 class ListGroupsTableViewController: UITableViewController {
     
-    var activeGroup = [
-        Group(name: "New", image: UIImage(named: "iconCat"))
-    ]
+    let vkApi = VKApi()
+    
+    var getApiGroup: Bool = false
+    
+//    var activeGroup = [
+//        Group(name: "New", image: UIImage(named: "iconCat"))
+//    ]
+    
+    var activeGroup: [Group] = []
     
     var searchActiveGroup : Bool = false
     var filteredGroup : [Group] = []
+    var searchText: String = ""
     
     @IBOutlet weak var groupSearchBar: UISearchBar!
     
@@ -24,7 +31,25 @@ class ListGroupsTableViewController: UITableViewController {
         groupSearchBar.delegate = self
         
         tableView.register(UINib(nibName: GroupsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsRichXIBCell.reuseIdentifier)
-
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !self.getApiGroup {
+            vkApi.vkGroupGet(completion: { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(groups):
+                    self?.activeGroup = groups
+                    self?.getApiGroup = true
+                    self?.tableView.reloadData()
+                }
+            })
+            print(self.activeGroup)
+        }
     }
     
     
@@ -35,7 +60,6 @@ class ListGroupsTableViewController: UITableViewController {
             
             if !activeGroup.contains(selectedGroup) {
                 activeGroup.append(selectedGroup)
-//                returnFromAddGroup = true
                 filteredGroup.removeAll()
                 searchActiveGroup = false
                 tableView.reloadData()
@@ -72,24 +96,31 @@ class ListGroupsTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        searchActiveGroup = false
-        filteredGroup.removeAll()
-        groupSearchBar.resignFirstResponder()
         if editingStyle == .delete {
             if filteredGroup.count > 0 {
-                groupSearchBar.showsCancelButton = false
-                groupSearchBar.text = nil
-                filteredGroup.removeAll()
-                searchActiveGroup = false
+//                groupSearchBar.showsCancelButton = false
+//                groupSearchBar.text = nil
+//                filteredGroup.removeAll()
+//                searchActiveGroup = false
+            let nameGroup = filteredGroup[indexPath.row].name
+
+            if let indexPathActiveGroup = activeGroup.firstIndex(where: {$0.name == nameGroup}) {
+                print(indexPathActiveGroup)
+                activeGroup.remove(at: indexPathActiveGroup)
+                filteredGroup.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadData()
             }
-            activeGroup.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-//            tableView.reloadData()
+            } else {
+                activeGroup.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadData()
+            }
         }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActiveGroup = false
+        searchActiveGroup = true
         searchBar.showsCancelButton = true
     }
     
@@ -113,7 +144,8 @@ class ListGroupsTableViewController: UITableViewController {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
-        filteredGroup = activeGroup.filter{$0.name == searchText}
+        self.searchText = searchText
+        filteredGroup = activeGroup.filter{$0.name.contains(searchText)}
         
         if(filteredGroup.count == 0){
             searchActiveGroup = false

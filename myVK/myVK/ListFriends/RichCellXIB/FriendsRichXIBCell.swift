@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsRichXIBCell: UITableViewCell {
     
@@ -53,9 +54,9 @@ class FriendsRichXIBCell: UITableViewCell {
     }
     
     
-    public func configure(with friends: User) {
+    public func configure(with friends: Friends) {
         friendsNameLabel.text = friends.name
-        friendsImageButton.image = friends.image
+        friendsImageButton.kf.setImage(with: friends.photoURL)
     }
     
     

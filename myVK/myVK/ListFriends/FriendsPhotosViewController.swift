@@ -23,13 +23,14 @@ class FriendsPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsCurrentPhoto.backgroundColor = .clear
-        friendsCurrentPhoto.image = friendArrayPhotos[currentPhotoIndex].image
+//        friendsCurrentPhoto.image = friendArrayPhotos[currentPhotoIndex].image
+        friendsCurrentPhoto.image = UIImage(systemName: "person")
         friendsCurrentPhoto.isUserInteractionEnabled = true
         friendsNextAppearingPhoto.backgroundColor = .clear
         friendsNextAppearingPhoto.isUserInteractionEnabled = true
         
         friendLikeCount.textColor = .systemBlue
-        friendLikeCount.text = String(friendArrayPhotos[currentPhotoIndex].countsLike)
+        friendLikeCount.text = String(friendArrayPhotos[currentPhotoIndex].likes.count)
         print(friendArrayPhotos.count)
     }
     
@@ -41,19 +42,23 @@ class FriendsPhotosViewController: UIViewController {
         let newPhotoIndex: Int = currentPhotoIndex + 1
         let newPhoto = friendArrayPhotos[newPhotoIndex]
         
-        friendsNextAppearingPhoto.image = newPhoto.image
+//        friendsNextAppearingPhoto.image = newPhoto.image
+        friendsNextAppearingPhoto.image = UIImage(systemName: "person")
         friendsNextAppearingPhoto.transform = CGAffineTransform(translationX: self.view.bounds.width, y: CGFloat.random(in: 50...200))
         
         UIView.animate(withDuration: 1) { [self] in
             friendsCurrentPhoto.transform = CGAffineTransform(translationX: -self.view.bounds.width, y: -(CGFloat.random(in: 50...200)))
             friendsNextAppearingPhoto.transform = .identity
         } completion: { [self] _ in
-            friendsCurrentPhoto.image = newPhoto.image
+//            friendsCurrentPhoto.image = newPhoto.image
+            friendsCurrentPhoto.image = UIImage(systemName: "person")
             friendsCurrentPhoto.transform = .identity
             friendsNextAppearingPhoto.transform = .identity
             currentPhotoIndex = newPhotoIndex
-            friendLikeCount.text = String(newPhoto.countsLike)
-            heartImage = newPhoto.like ? "heart.fill" : "heart"
+//            friendLikeCount.text = String(newPhoto.countsLike)
+            friendLikeCount.text = "String(newPhoto.countsLike)"
+//            heartImage = newPhoto.like ? "heart.fill" : "heart"
+            heartImage = "heart.fill"
             friendLikeButton.setImage(UIImage(systemName: heartImage), for: [])
         }
     }
@@ -63,21 +68,25 @@ class FriendsPhotosViewController: UIViewController {
             return
         }
         let newPhotoIndex: Int = currentPhotoIndex - 1
-        let newPhoto = friendArrayPhotos[newPhotoIndex]
+//        let newPhoto = friendArrayPhotos[newPhotoIndex]
         
-        friendsNextAppearingPhoto.image = newPhoto.image
+//        friendsNextAppearingPhoto.image = newPhoto.image
+        friendsNextAppearingPhoto.image = UIImage(systemName: "person")
         friendsNextAppearingPhoto.transform = CGAffineTransform(translationX: -self.view.bounds.width, y: CGFloat.random(in: 50...200))
         
         UIView.animate(withDuration: 1) { [self] in
             friendsCurrentPhoto.transform = CGAffineTransform(translationX: self.view.bounds.width, y: -(CGFloat.random(in: 50...200)))
             friendsNextAppearingPhoto.transform = .identity
         } completion: { [self] _ in
-            friendsCurrentPhoto.image = newPhoto.image
+//            friendsCurrentPhoto.image = newPhoto.image
+            friendsCurrentPhoto.image = UIImage(systemName: "person")
             friendsCurrentPhoto.transform = .identity
             friendsNextAppearingPhoto.transform = .identity
             currentPhotoIndex = newPhotoIndex
-            friendLikeCount.text = String(newPhoto.countsLike)
-            heartImage = newPhoto.like ? "heart.fill" : "heart"
+//            friendLikeCount.text = String(newPhoto.countsLike)
+            friendLikeCount.text = "String(newPhoto.countsLike)"
+//            heartImage = newPhoto.like ? "heart.fill" : "heart"
+            heartImage = "heart.fill"
             friendLikeButton.setImage(UIImage(systemName: heartImage), for: [])
 
         }

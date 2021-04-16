@@ -1,5 +1,5 @@
 //
-//  sessionsUser.swift
+//  SessionsUser.swift
 //  myVK
 //
 //  Created by Вячеслав Поляков on 21.03.2021.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-class sessionsUser {
+class SessionsUser {
     
     var token: String = ""
-    var userId: Int = 0
+    var userId: String = ""
     
     private init () {}
     
-    static let instance = sessionsUser()
+    static let shared = SessionsUser()
 }

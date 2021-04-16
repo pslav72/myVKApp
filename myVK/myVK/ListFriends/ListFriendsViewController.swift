@@ -6,40 +6,64 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class ListFriendsViewController: UITableViewController {
     
-    var friends = [
-        User(name: "Oleg", image: UIImage(systemName: "person"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolOleg", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolOleg2", like: true, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolOleg3", like: false, countsLike: Int.random(in: 0...100))
-        ]),
-        User(name: "Vanja", image: UIImage(systemName: "person.2"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolVanja", like: true, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolVanja2", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolVanja3", like: true, countsLike: Int.random(in: 0...100)),
-        ]),
-        User(name: "Stas", image:  UIImage(systemName: "person.3"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-        ]),
-        User(name: "Roma", image:  UIImage(systemName: "person"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolRoma", like: true, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolRoma2", like: true, countsLike: Int.random(in: 0...100)),
-        ]),
-        User(name: "Anna", image:  UIImage(systemName: "person.3"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-        ]),
-        User(name: "Yulija", image:  UIImage(systemName: "person.3"), photos: [
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-        ]),
-    ]
+    let vkApi = VKApi()
+    
+    var friends: [Friends] = []
+//    var sectionedUsersT: [UserSectionT] = []
+    
+//    var friends = [
+//        Friends(name: "Oleg", image: UIImage(systemName: "person"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolOleg", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolOleg2", like: true, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolOleg3", like: false, countsLike: Int.random(in: 0...100))
+//        ]),
+//        Friends(name: "Vanja", image: UIImage(systemName: "person.2"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolVanja", like: true, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolVanja2", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolVanja3", like: true, countsLike: Int.random(in: 0...100)),
+//        ]),
+//        Friends(name: "Stas", image:  UIImage(systemName: "person.3"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
+//        ]),
+//        Friends(name: "Roma", image:  UIImage(systemName: "person"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolRoma", like: true, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolRoma2", like: true, countsLike: Int.random(in: 0...100)),
+//        ]),
+//        Friends(name: "Anna", image:  UIImage(systemName: "person.3"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
+//        ]),
+//        Friends(name: "Yulija", image:  UIImage(systemName: "person.3"), photos: [
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
+//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
+//        ]),
+//    ]
+//
+//    var sectionedUsers: [UserSection] {
+//
+//        friends.reduce(into: []) {
+//            currentSectionUsers, user in
+//            guard let firstLetter = user.name.first else {return}
+//
+//            if let currentSectionUsersStartingWithLetterIndex = currentSectionUsers.firstIndex(where: {$0.title == firstLetter}) {
+//                let oldSection = currentSectionUsers[currentSectionUsersStartingWithLetterIndex]
+//                let updateSection = UserSection(title: firstLetter, users: oldSection.users + [user])
+//                currentSectionUsers[currentSectionUsersStartingWithLetterIndex] = updateSection
+//            } else {
+//                let newSection = UserSection(title: firstLetter, users: [user])
+//                currentSectionUsers.append(newSection)
+//            }
+//        }.sorted()
+//    }
     
     var sectionedUsers: [UserSection] {
         
@@ -57,13 +81,29 @@ class ListFriendsViewController: UITableViewController {
             }
         }.sorted()
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.register(UINib(nibName: FriendsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: FriendsRichXIBCell.reuseIdentifier)
         tableView.register(UserFirstLetterHeaderView.self, forHeaderFooterViewReuseIdentifier: UserFirstLetterHeaderView.reuseIdentifier)
-
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        vkApi.vkFriendsGet(completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(friends):
+                self?.friends = friends
+                self?.tableView.reloadData()
+            }
+        })
+        print(self.friends)
     }
     
     
@@ -72,15 +112,15 @@ class ListFriendsViewController: UITableViewController {
            let cellIndexPath = tableView.indexPathForSelectedRow,
            let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
             let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row]
-            friendsCollectionViewController.varFriends = selectedFriends
+            friendsCollectionViewController.friend = selectedFriends
         }
         
-        if segue.identifier == "ShowFriendPhotoSegue",
-           let cellIndexPath = tableView.indexPathForSelectedRow,
-           let friendsPhotosViewController = segue.destination as? FriendsPhotosViewController {
-            let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row].photos
-            friendsPhotosViewController.friendArrayPhotos = selectedFriends
-        }
+//        if segue.identifier == "ShowFriendPhotoSegue",
+//           let cellIndexPath = tableView.indexPathForSelectedRow,
+//           let friendsPhotosViewController = segue.destination as? FriendsPhotosViewController {
+//            let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row].photos
+//            friendsPhotosViewController.friendArrayPhotos = selectedFriends
+//        }
     }
     
 
@@ -121,7 +161,8 @@ class ListFriendsViewController: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowFriendPhotoSegue", sender: nil)
+        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
     }
+    
     
 }
