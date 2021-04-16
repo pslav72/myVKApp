@@ -70,6 +70,8 @@ extension VKOauthWebViewController: WKNavigationDelegate {
         SessionsUser.shared.userId = params["user_id"] ?? ""
         SessionsUser.shared.token = params["access_token"] ?? ""
         
+        print("access_token \(SessionsUser.shared.token)")
+        
         performSegue(withIdentifier: "ShowMainTabBarController", sender: nil)
         
         decisionHandler(.cancel)

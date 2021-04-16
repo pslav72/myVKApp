@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GroupsRichXIBCell: UITableViewCell {
     
@@ -39,7 +40,8 @@ class GroupsRichXIBCell: UITableViewCell {
     
     public func configure(with groups: Group) {
         groupsNameLabel.text = groups.name
-        groupsImageView.image = groups.image
+//        groupsImageView.image = groups.image
+        groupsImageView.kf.setImage(with: groups.image)
     }
     
     

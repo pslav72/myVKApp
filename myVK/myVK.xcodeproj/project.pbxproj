@@ -20,7 +20,7 @@
 		D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */; };
 		D13277F525E021710071EF0E /* ListFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F425E021710071EF0E /* ListFriendsViewController.swift */; };
 		D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13277F925E022750071EF0E /* FriendsCell.swift */; };
-		D132780125E02A560071EF0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D132780025E02A560071EF0E /* User.swift */; };
+		D132780125E02A560071EF0E /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D132780025E02A560071EF0E /* Friends.swift */; };
 		D134D7DB25E1626D0064E780 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7DA25E1626D0064E780 /* Group.swift */; };
 		D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7E225E3D8C70064E780 /* FriendsCollectionViewController.swift */; };
 		D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7E625E4090A0064E780 /* FriendsCollectionViewCell.swift */; };
@@ -45,6 +45,8 @@
 		D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEB49325F2A79200A6A25C /* NewsTableViewController.swift */; };
 		D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEB49725F2A7F600A6A25C /* NewsRichXIBCell.swift */; };
 		D1CEB49A25F2A7F600A6A25C /* NewsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */; };
+		D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */; };
+		D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BB62612449C0096DAB2 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +65,7 @@
 		D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionAnimator.swift; sourceTree = "<group>"; };
 		D13277F425E021710071EF0E /* ListFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendsViewController.swift; sourceTree = "<group>"; };
 		D13277F925E022750071EF0E /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
-		D132780025E02A560071EF0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D132780025E02A560071EF0E /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		D134D7DA25E1626D0064E780 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D134D7E225E3D8C70064E780 /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		D134D7E625E4090A0064E780 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */,
+				D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */,
 				D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,7 +190,7 @@
 		D134D7D825E161DF0064E780 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D132780025E02A560071EF0E /* User.swift */,
+				D132780025E02A560071EF0E /* Friends.swift */,
 				D134D7DA25E1626D0064E780 /* Group.swift */,
 				D17C4AFE25F3E437001603AE /* News.swift */,
 			);
@@ -284,6 +288,8 @@
 			name = myVK;
 			packageProductDependencies = (
 				D13AAE062608F0B8001F6DEC /* Alamofire */,
+				D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */,
+				D1FA0BB62612449C0096DAB2 /* Kingfisher */,
 			);
 			productName = myVK;
 			productReference = D101BB2E25D58AEF0038052B /* myVK.app */;
@@ -314,6 +320,8 @@
 			mainGroup = D101BB2525D58AEF0038052B;
 			packageReferences = (
 				D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D101BB2F25D58AEF0038052B /* Products */;
 			projectDirPath = "";
@@ -373,7 +381,7 @@
 				D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */,
 				D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */,
 				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
-				D132780125E02A560071EF0E /* User.swift in Sources */,
+				D132780125E02A560071EF0E /* Friends.swift in Sources */,
 				D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */,
 				D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */,
 			);
@@ -587,6 +595,22 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -594,6 +618,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		D1FA0BB62612449C0096DAB2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
