@@ -76,4 +76,8 @@ class Group: Object {
         self.image = self.photo_100
     }
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

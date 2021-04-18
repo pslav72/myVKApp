@@ -7,63 +7,14 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 
 class ListFriendsViewController: UITableViewController {
     
     let vkApi = VKApi()
-    
-    var friends: [Friends] = []
-//    var sectionedUsersT: [UserSectionT] = []
-    
-//    var friends = [
-//        Friends(name: "Oleg", image: UIImage(systemName: "person"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolOleg", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolOleg2", like: true, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolOleg3", like: false, countsLike: Int.random(in: 0...100))
-//        ]),
-//        Friends(name: "Vanja", image: UIImage(systemName: "person.2"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolVanja", like: true, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person.2"), description: "PhotoCoolVanja2", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolVanja3", like: true, countsLike: Int.random(in: 0...100)),
-//        ]),
-//        Friends(name: "Stas", image:  UIImage(systemName: "person.3"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-//        ]),
-//        Friends(name: "Roma", image:  UIImage(systemName: "person"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolRoma", like: true, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person.3"), description: "PhotoCoolRoma2", like: true, countsLike: Int.random(in: 0...100)),
-//        ]),
-//        Friends(name: "Anna", image:  UIImage(systemName: "person.3"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-//        ]),
-//        Friends(name: "Yulija", image:  UIImage(systemName: "person.3"), photos: [
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas2", like: false, countsLike: Int.random(in: 0...100)),
-//            UserPhotos(image: UIImage(systemName: "person"), description: "PhotoCoolStas3", like: false, countsLike: Int.random(in: 0...100)),
-//        ]),
-//    ]
-//
-//    var sectionedUsers: [UserSection] {
-//
-//        friends.reduce(into: []) {
-//            currentSectionUsers, user in
-//            guard let firstLetter = user.name.first else {return}
-//
-//            if let currentSectionUsersStartingWithLetterIndex = currentSectionUsers.firstIndex(where: {$0.title == firstLetter}) {
-//                let oldSection = currentSectionUsers[currentSectionUsersStartingWithLetterIndex]
-//                let updateSection = UserSection(title: firstLetter, users: oldSection.users + [user])
-//                currentSectionUsers[currentSectionUsersStartingWithLetterIndex] = updateSection
-//            } else {
-//                let newSection = UserSection(title: firstLetter, users: [user])
-//                currentSectionUsers.append(newSection)
-//            }
-//        }.sorted()
-//    }
+    let realmService = RealmService.self
+    private lazy var friends: Results<Friends> = try! Realm(configuration: realmService.config).objects(Friends.self)
     
     var sectionedUsers: [UserSection] {
         
@@ -85,10 +36,9 @@ class ListFriendsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         tableView.register(UINib(nibName: FriendsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: FriendsRichXIBCell.reuseIdentifier)
         tableView.register(UserFirstLetterHeaderView.self, forHeaderFooterViewReuseIdentifier: UserFirstLetterHeaderView.reuseIdentifier)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,11 +49,15 @@ class ListFriendsViewController: UITableViewController {
             case let .failure(error):
                 print(error)
             case let .success(friends):
-                self?.friends = friends
-                self?.tableView.reloadData()
+                do {
+                    try self?.realmService.save(items: friends)
+                    self?.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+
             }
         })
-//        print(self.friends)
     }
     
     

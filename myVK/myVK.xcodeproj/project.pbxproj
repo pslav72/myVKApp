@@ -48,6 +48,7 @@
 		D1CEB49A25F2A7F600A6A25C /* NewsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */; };
 		D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */; };
 		D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BB62612449C0096DAB2 /* Kingfisher */; };
+		D1FA48DA26272816006090DD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA48D926272816006090DD /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		D1CEB49325F2A79200A6A25C /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		D1CEB49725F2A7F600A6A25C /* NewsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRichXIBCell.swift; sourceTree = "<group>"; };
 		D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsRichXIBCell.xib; sourceTree = "<group>"; };
+		D1FA48D926272816006090DD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,22 +128,23 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
-				D15CC8372609098300EA0B09 /* APIWrapper */,
-				D13AAE092608F469001F6DEC /* WebView */,
-				D150351826073D0E0048CA1D /* Sessions */,
 				D128065B25FFB408008C9F07 /* Animation */,
-				D1CEB49125F2A76C00A6A25C /* News */,
-				D134D7D825E161DF0064E780 /* Model */,
-				D101BB3125D58AEF0038052B /* AppDelegate.swift */,
-				D101BB3325D58AEF0038052B /* SceneDelegate.swift */,
-				D101BB3525D58AEF0038052B /* LoginViewController.swift */,
-				D101BB3725D58AEF0038052B /* Main.storyboard */,
-				D101BB3A25D58AF10038052B /* Assets.xcassets */,
-				D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */,
-				D101BB3F25D58AF10038052B /* Info.plist */,
+				D15CC8372609098300EA0B09 /* APIWrapper */,
 				D13277FC25E0227D0071EF0E /* ListFriends */,
 				D134D7F125E40DB10064E780 /* ListGorups */,
+				D134D7D825E161DF0064E780 /* Model */,
+				D1CEB49125F2A76C00A6A25C /* News */,
+				D150351826073D0E0048CA1D /* Sessions */,
+				D1FA48D8262727F8006090DD /* Realm */,
+				D13AAE092608F469001F6DEC /* WebView */,
+				D101BB3F25D58AF10038052B /* Info.plist */,
+				D101BB3125D58AEF0038052B /* AppDelegate.swift */,
 				D134D7FC25E53BE30064E780 /* GradientMainView.swift */,
+				D101BB3525D58AEF0038052B /* LoginViewController.swift */,
+				D101BB3325D58AEF0038052B /* SceneDelegate.swift */,
+				D101BB3A25D58AF10038052B /* Assets.xcassets */,
+				D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */,
+				D101BB3725D58AEF0038052B /* Main.storyboard */,
 			);
 			path = myVK;
 			sourceTree = "<group>";
@@ -272,6 +275,14 @@
 			path = RichCellXIB;
 			sourceTree = "<group>";
 		};
+		D1FA48D8262727F8006090DD /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				D1FA48D926272816006090DD /* RealmService.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -372,6 +383,7 @@
 				D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */,
 				D15CC8412609116300EA0B09 /* VKApiTarget.swift in Sources */,
 				D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */,
+				D1FA48DA26272816006090DD /* RealmService.swift in Sources */,
 				D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */,
 				D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */,
 				D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */,

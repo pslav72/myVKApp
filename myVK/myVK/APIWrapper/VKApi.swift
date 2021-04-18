@@ -34,11 +34,16 @@ class VKApi {
                 print(error)
                 completion(.failure(error))
             case .success (let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let friendsJSON = json["response"]["items"].arrayValue
-                let friends = friendsJSON.map { Friends(json: $0) }
-                completion(.success(friends))
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+                    let friendsJSON = json["response"]["items"].arrayValue
+                    let friends = friendsJSON.map { Friends(json: $0) }
+                    completion(.success(friends))
+                } catch {
+                    completion(.failure(error))
+                }
+                
             }
         }
         
@@ -86,11 +91,15 @@ class VKApi {
                 print(error)
                 completion(.failure(error))
             case .success(let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let groupGetJSON = json["response"]["items"].arrayValue
-                let groupGet = groupGetJSON.map { Group(json: $0) }
-                completion(.success(groupGet))
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+                    let groupGetJSON = json["response"]["items"].arrayValue
+                    let groupGet = groupGetJSON.map { Group(json: $0) }
+                    completion(.success(groupGet))
+                } catch  {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -119,11 +128,16 @@ class VKApi {
                 print(error)
                 completion(.failure(error))
             case .success(let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let groupGetJSON = json["response"]["items"].arrayValue
-                let groupGet = groupGetJSON.map { Group(json: $0) }
-                completion(.success(groupGet))
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+                    let groupGetJSON = json["response"]["items"].arrayValue
+                    let groupGet = groupGetJSON.map { Group(json: $0) }
+                    completion(.success(groupGet))
+                } catch {
+                    completion(.failure(error))
+                }
+                
             }
         }
     }
@@ -134,9 +148,6 @@ class VKApi {
         guard owner_id != 0 else {
             return
         }
-        
-//        print(#function)
-//        print(owner_id, album_id)
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host
@@ -156,16 +167,16 @@ class VKApi {
                 print(error)
                 completion(.failure(error))
             case .success (let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let userPhotosJSON = json["response"]["items"].arrayValue
-//                let userPhotosSizesJSON = json["response"]["items"].arrayValue.map{$0["sizes"].arrayValue}
-                let userPhotos = userPhotosJSON.map { UserPhotos(json: $0) }
-//
-//                print("-------------")
-//                print(userPhotosSizesJSON)
-//                print("-------------")
-                completion(.success(userPhotos))
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+                    let userPhotosJSON = json["response"]["items"].arrayValue
+                    let userPhotos = userPhotosJSON.map { UserPhotos(json: $0) }
+                    completion(.success(userPhotos))
+                } catch {
+                    completion(.failure(error))
+                }
+                
             }
         }
     }

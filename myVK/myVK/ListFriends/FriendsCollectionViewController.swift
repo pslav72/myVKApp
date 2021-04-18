@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsCollectionViewController: UICollectionViewController {
     
     let vkApi = VKApi()
+    let realmService = RealmService.self
     var friend: Friends?
-    var friendPhotos: [UserPhotos] = []
+    private lazy var friendPhotos: Results<UserPhotos> = try! Realm(configuration: realmService.config).objects(UserPhotos.self).filter("owner_id == %@",friend?.id ?? 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = friend?.name
+        title = friend?.name ?? "Empty"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,8 +28,12 @@ class FriendsCollectionViewController: UICollectionViewController {
             case let .failure(error):
                 print(error)
             case let .success(friendPhotos):
-                self?.friendPhotos = friendPhotos
-                self?.collectionView.reloadData()
+                do {
+                    try self?.realmService.save(items: friendPhotos)
+                    self?.collectionView.reloadData()
+                } catch {
+                    print(error)
+                }
             }
         })
     }

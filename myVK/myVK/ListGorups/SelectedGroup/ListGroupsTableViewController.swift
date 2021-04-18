@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListGroupsTableViewController: UITableViewController {
     
     let vkApi = VKApi()
-    
+    let realmService = RealmService.self
     var getApiGroup: Bool = false
-    var activeGroup: [Group] = []
+//    var activeGroup: [Group] = []
+    private lazy var activeGroup: Results<Group> = try! Realm(configuration: realmService.config).objects(Group.self)
     
     var searchActiveGroup : Bool = false
     var filteredGroup : [Group] = []
@@ -37,12 +39,18 @@ class ListGroupsTableViewController: UITableViewController {
                 case let .failure(error):
                     print(error)
                 case let .success(groups):
-                    self?.activeGroup = groups
+                    do {
+                        try self?.realmService.save(items: groups)
+                        self?.tableView.reloadData()
+                    } catch {
+                        print(error)
+                    }
+//                    self?.activeGroup = groups
                     self?.getApiGroup = true
-                    self?.tableView.reloadData()
+                    
                 }
             })
-            print(self.activeGroup)
+//            print(self.activeGroup)
         }
     }
     
@@ -53,10 +61,14 @@ class ListGroupsTableViewController: UITableViewController {
             let selectedGroup = addGroupTableViewController.groups[selectedIndexPath.row]
             
             if !activeGroup.contains(selectedGroup) {
-                activeGroup.append(selectedGroup)
-                filteredGroup.removeAll()
-                searchActiveGroup = false
-                tableView.reloadData()
+                do {
+                    try self.realmService.save(items: selectedGroup)
+                    filteredGroup.removeAll()
+                    searchActiveGroup = false
+                    tableView.reloadData()
+                } catch {
+                    print(error)
+                }
             }
         }
     }
@@ -68,7 +80,10 @@ class ListGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchActiveGroup, filteredGroup.count > 0 {
             return filteredGroup.count
-        } else {
+        } else if searchActiveGroup, filteredGroup.count == 0 {
+            return 0
+        }
+        else {
             return activeGroup.count
         }
     }
@@ -77,10 +92,11 @@ class ListGroupsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
         if searchActiveGroup, filteredGroup.count > 0 {
             cell.configure(with: filteredGroup[indexPath.row])
-        } else {
+        }
+        else {
             cell.configure(with: activeGroup[indexPath.row])
         }
-
+        
         return cell
     }
     
@@ -92,7 +108,7 @@ class ListGroupsTableViewController: UITableViewController {
                 
                 if let indexPathActiveGroup = activeGroup.firstIndex(where: {$0.name == nameGroup}) {
                     print(indexPathActiveGroup)
-                    activeGroup.remove(at: indexPathActiveGroup)
+                    try? realmService.delete(items: activeGroup[indexPath.row])
                     filteredGroup.remove(at: indexPath.row)
                     if filteredGroup.count > 0 {
                         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -103,7 +119,7 @@ class ListGroupsTableViewController: UITableViewController {
                     tableView.reloadData()
                 }
             } else {
-                activeGroup.remove(at: indexPath.row)
+                try? realmService.delete(items: activeGroup[indexPath.row])
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.reloadData()
             }
@@ -135,7 +151,7 @@ class ListGroupsTableViewController: UITableViewController {
         filteredGroup = activeGroup.filter{$0.name.contains(searchText)}
         
         if(filteredGroup.count == 0){
-            searchActiveGroup = false
+            searchActiveGroup = true
         } else {
             searchActiveGroup = true
         }

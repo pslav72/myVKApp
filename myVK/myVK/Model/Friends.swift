@@ -87,10 +87,15 @@ class Friends: Object {
         self.photo_100 = json["photo_100"].stringValue
         self.photoURL = self.photo_100
     }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 class UserPhotos: Object {
     @objc dynamic var id: Int = 0
+    @objc dynamic var owner_id: Int = 0
     @objc dynamic var post_id: Int = 0
     @objc dynamic var text: String = ""
     @objc dynamic var  likes: Likes?
@@ -100,6 +105,7 @@ class UserPhotos: Object {
         self.init()
         
         self.id = json["id"].intValue
+        self.owner_id = json["owner_id"].intValue
         self.post_id = json["post_id"].intValue
         self.text = json["text"].stringValue
         let likesJson = json["likes"]
@@ -107,9 +113,14 @@ class UserPhotos: Object {
         self.sizes.append(objectsIn: json["sizes"].arrayValue.map(Sizes.init))
 
     }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+
 }
 
-class Sizes: Object {
+class Sizes: EmbeddedObject {
     @objc dynamic var height: Int = 0
     @objc dynamic var url: String = ""
     @objc dynamic var type: String = ""
@@ -125,7 +136,7 @@ class Sizes: Object {
     }
 }
 
-class Likes: Object {
+class Likes: EmbeddedObject {
     @objc dynamic var user_likes: Int = 0
     @objc dynamic var count: Int = 0
     
