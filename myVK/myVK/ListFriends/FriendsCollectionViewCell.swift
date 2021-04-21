@@ -22,15 +22,15 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var friendLikeButton: UIButton!
     @IBOutlet var friendLikeCount: UILabel!
     
-    func configure(with friends: UserPhotos) {
+    func configure(with friend: UserPhotos) {
         
-        guard let friendLikes = friends.likes else { return }
+        guard let friendLikes = friend.likes else { return }
         
         countsLike = friendLikes.count
         isLiked = friendLikes.user_likes
 
-        if let indexPath = friends.sizes.firstIndex(where: {$0.type == "m"}) {
-            self.photoURL = friends.sizes[indexPath].url
+        if let indexPath = friend.sizes.firstIndex(where: {$0.type == "m"}) {
+            self.photoURL = friend.sizes[indexPath].url
         }
         
         heartImage = (isLiked != 0) ? "heart.fill" : "heart"

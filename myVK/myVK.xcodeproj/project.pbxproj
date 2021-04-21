@@ -32,6 +32,7 @@
 		D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D13AAE062608F0B8001F6DEC /* Alamofire */; };
 		D13AAE0B2608F4B6001F6DEC /* VKOauthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */; };
 		D14944DD261B76A500DC4AB5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D14944DC261B76A500DC4AB5 /* RealmSwift */; };
+		D1495E52262F1FCF00184CE8 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */; };
 		D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */; };
 		D14A4AEB25F13D8600F55D27 /* GroupsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */; };
 		D150351A26073D2A0048CA1D /* SessionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D150351926073D2A0048CA1D /* SessionsUser.swift */; };
@@ -46,6 +47,7 @@
 		D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEB49325F2A79200A6A25C /* NewsTableViewController.swift */; };
 		D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEB49725F2A7F600A6A25C /* NewsRichXIBCell.swift */; };
 		D1CEB49A25F2A7F600A6A25C /* NewsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */; };
+		D1D52AC4262F3DCF00E73D06 /* UICollecitionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D52AC3262F3DCF00E73D06 /* UICollecitionView+Extensions.swift */; };
 		D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */; };
 		D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BB62612449C0096DAB2 /* Kingfisher */; };
 		D1FA48DA26272816006090DD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA48D926272816006090DD /* RealmService.swift */; };
@@ -77,6 +79,7 @@
 		D134D7F825E520DB0064E780 /* FriendsCellImageViewSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellImageViewSubView.swift; sourceTree = "<group>"; };
 		D134D7FC25E53BE30064E780 /* GradientMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMainView.swift; sourceTree = "<group>"; };
 		D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKOauthWebViewController.swift; sourceTree = "<group>"; };
+		D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRichXIBCell.swift; sourceTree = "<group>"; };
 		D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsRichXIBCell.xib; sourceTree = "<group>"; };
 		D150351926073D2A0048CA1D /* SessionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsUser.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		D1CEB49325F2A79200A6A25C /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		D1CEB49725F2A7F600A6A25C /* NewsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRichXIBCell.swift; sourceTree = "<group>"; };
 		D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsRichXIBCell.xib; sourceTree = "<group>"; };
+		D1D52AC3262F3DCF00E73D06 /* UICollecitionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollecitionView+Extensions.swift"; sourceTree = "<group>"; };
 		D1FA48D926272816006090DD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,10 +132,11 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D1495E50262F1F9400184CE8 /* Extensions */,
 				D128065B25FFB408008C9F07 /* Animation */,
 				D15CC8372609098300EA0B09 /* APIWrapper */,
 				D13277FC25E0227D0071EF0E /* ListFriends */,
-				D134D7F125E40DB10064E780 /* ListGorups */,
+				D134D7F125E40DB10064E780 /* ListGroups */,
 				D134D7D825E161DF0064E780 /* Model */,
 				D1CEB49125F2A76C00A6A25C /* News */,
 				D150351826073D0E0048CA1D /* Sessions */,
@@ -202,14 +207,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D134D7F125E40DB10064E780 /* ListGorups */ = {
+		D134D7F125E40DB10064E780 /* ListGroups */ = {
 			isa = PBXGroup;
 			children = (
 				D10DAD2E25E7FE9B00C7C564 /* SelectedGroup */,
 				D10DAD3025E7FEAA00C7C564 /* AvalibaleGroup */,
 				D14A4AED25F13D8E00F55D27 /* RichCellXIB */,
 			);
-			path = ListGorups;
+			path = ListGroups;
 			sourceTree = "<group>";
 		};
 		D13AAE092608F469001F6DEC /* WebView */ = {
@@ -218,6 +223,15 @@
 				D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		D1495E50262F1F9400184CE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */,
+				D1D52AC3262F3DCF00E73D06 /* UICollecitionView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D14A4AED25F13D8E00F55D27 /* RichCellXIB */ = {
@@ -386,6 +400,7 @@
 				D1FA48DA26272816006090DD /* RealmService.swift in Sources */,
 				D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */,
 				D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */,
+				D1495E52262F1FCF00184CE8 /* UITableView+Extensions.swift in Sources */,
 				D13277FA25E022750071EF0E /* FriendsCell.swift in Sources */,
 				D101BB3225D58AEF0038052B /* AppDelegate.swift in Sources */,
 				D15CC83A260909D400EA0B09 /* VKApi.swift in Sources */,
@@ -397,6 +412,7 @@
 				D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */,
 				D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */,
 				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
+				D1D52AC4262F3DCF00E73D06 /* UICollecitionView+Extensions.swift in Sources */,
 				D132780125E02A560071EF0E /* Friends.swift in Sources */,
 				D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */,
 				D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */,
