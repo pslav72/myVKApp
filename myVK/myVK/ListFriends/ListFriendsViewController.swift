@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 import RealmSwift
-
+import FirebaseAuth
 
 class ListFriendsViewController: UITableViewController {
     
@@ -36,6 +36,15 @@ class ListFriendsViewController: UITableViewController {
     }
     
 
+    @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch {
+            show(error: error)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
