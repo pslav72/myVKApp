@@ -35,7 +35,8 @@ class ListGroupsTableViewController: UITableViewController {
             //                self?.tableView.reloadData()
             case let .update(_, deletions, insertions, modifications):
                 print(deletions, insertions, modifications)
-                self?.tableView.applyNotificationToken(deletions: deletions, insertions: insertions, modifications: modifications)
+//                self?.tableView.applyNotificationToken(deletions: deletions, insertions: insertions, modifications: modifications)
+                self?.tableView.reloadData()
             case let  .error(error):
                 print(error)
             }
