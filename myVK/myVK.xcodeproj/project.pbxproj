@@ -15,6 +15,10 @@
 		D101BB3E25D58AF10038052B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D101BB3C25D58AF10038052B /* LaunchScreen.storyboard */; };
 		D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAD2725E6ADAB00C7C564 /* AddGroupTableViewController.swift */; };
 		D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DAD2B25E6AEE200C7C564 /* AddGroupTableViewCell.swift */; };
+		D111761B2646F2FF00D2428F /* NewsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111761A2646F2FF00D2428F /* NewsHeaderCell.swift */; };
+		D111761D2646F32300D2428F /* NewsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111761C2646F32300D2428F /* NewsImageCell.swift */; };
+		D111761F2646F34100D2428F /* NewsTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D111761E2646F34100D2428F /* NewsTextCell.swift */; };
+		D11176212646F35400D2428F /* NewsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11176202646F35400D2428F /* NewsFooterCell.swift */; };
 		D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128065C25FFB44B008C9F07 /* UserAnimationNavigationController.swift */; };
 		D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128066025FFB6B4008C9F07 /* TopRigthRotateAnimation.swift */; };
 		D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */; };
@@ -64,6 +68,10 @@
 		D101BB3F25D58AF10038052B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D10DAD2725E6ADAB00C7C564 /* AddGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewController.swift; sourceTree = "<group>"; };
 		D10DAD2B25E6AEE200C7C564 /* AddGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D111761A2646F2FF00D2428F /* NewsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderCell.swift; sourceTree = "<group>"; };
+		D111761C2646F32300D2428F /* NewsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsImageCell.swift; sourceTree = "<group>"; };
+		D111761E2646F34100D2428F /* NewsTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTextCell.swift; sourceTree = "<group>"; };
+		D11176202646F35400D2428F /* NewsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFooterCell.swift; sourceTree = "<group>"; };
 		D128065C25FFB44B008C9F07 /* UserAnimationNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnimationNavigationController.swift; sourceTree = "<group>"; };
 		D128066025FFB6B4008C9F07 /* TopRigthRotateAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRigthRotateAnimation.swift; sourceTree = "<group>"; };
 		D128066325FFCD72008C9F07 /* InteractiveTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -271,11 +279,23 @@
 			path = APIWrapper;
 			sourceTree = "<group>";
 		};
+		D1804024264448AC0082D6E2 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D111761A2646F2FF00D2428F /* NewsHeaderCell.swift */,
+				D111761C2646F32300D2428F /* NewsImageCell.swift */,
+				D111761E2646F34100D2428F /* NewsTextCell.swift */,
+				D11176202646F35400D2428F /* NewsFooterCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		D1CEB49125F2A76C00A6A25C /* News */ = {
 			isa = PBXGroup;
 			children = (
-				D1CEB49625F2A7C300A6A25C /* RichCellXIB */,
 				D1CEB49325F2A79200A6A25C /* NewsTableViewController.swift */,
+				D1804024264448AC0082D6E2 /* TableViewCell */,
+				D1CEB49625F2A7C300A6A25C /* RichCellXIB */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -384,12 +404,14 @@
 			files = (
 				D134D7EE25E40DAB0064E780 /* ListGroupsTableViewCell.swift in Sources */,
 				D183046125F92A73006CB07F /* FriendsPhotosViewController.swift in Sources */,
+				D111761D2646F32300D2428F /* NewsImageCell.swift in Sources */,
 				D17C4AFF25F3E437001603AE /* News.swift in Sources */,
 				D134D7FD25E53BE30064E780 /* GradientMainView.swift in Sources */,
 				D1B7F22225EFE9F300B64BE8 /* FriendsRichXIBCell.swift in Sources */,
 				D134D7DB25E1626D0064E780 /* Group.swift in Sources */,
 				D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */,
 				D150351A26073D2A0048CA1D /* SessionsUser.swift in Sources */,
+				D111761F2646F34100D2428F /* NewsTextCell.swift in Sources */,
 				D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */,
 				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
 				D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */,
@@ -409,6 +431,7 @@
 				D13AAE0B2608F4B6001F6DEC /* VKOauthWebViewController.swift in Sources */,
 				D134D7EA25E40D840064E780 /* ListGroupsTableViewController.swift in Sources */,
 				D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */,
+				D111761B2646F2FF00D2428F /* NewsHeaderCell.swift in Sources */,
 				D10DAD2825E6ADAB00C7C564 /* AddGroupTableViewController.swift in Sources */,
 				D128066425FFCD73008C9F07 /* InteractiveTransitionAnimator.swift in Sources */,
 				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
@@ -416,6 +439,7 @@
 				D132780125E02A560071EF0E /* Friends.swift in Sources */,
 				D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */,
 				D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */,
+				D11176212646F35400D2428F /* NewsFooterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

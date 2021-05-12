@@ -22,6 +22,7 @@ class VKApiTarget {
         case groupsSearch
         case authorize
         case photosGet
+        case newsFeed
     }
     
     func pathMethod(method: listsMethod) -> String {
@@ -38,6 +39,8 @@ class VKApiTarget {
             return "/authorize"
         case .photosGet:
             return "/method/photos.get"
+        case .newsFeed:
+            return "/method/newsfeed.get"
         }
     }
 }

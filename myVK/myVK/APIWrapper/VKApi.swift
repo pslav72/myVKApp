@@ -181,5 +181,41 @@ class VKApi {
         }
     }
     
+    func vkNewsFeed(completion: @escaping (Result<[NewsFeed], Error>) -> Void) {
+        
+        let scheme = vkApiTarget.scheme
+        let host = vkApiTarget.host
+        let path = vkApiTarget.pathMethod(method: .newsFeed)
+        
+        let parameters: Parameters = [
+            "access_token": sessionsToken,
+            "v": vkApiTarget.apiVersion,
+            "filters": "friend,post",
+            "max_photos": "1",
+            "count": "10"
+        ]
+        
+        Alamofire.AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            case .success (let data):
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+                    let newsFeedJSON = json["response"]["items"].arrayValue
+                    let newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
+                    completion(.success(newsFeed))
+                } catch {
+                    completion(.failure(error))
+                }
+                
+            }
+        }
+        
+    }
+
+    
     
 }

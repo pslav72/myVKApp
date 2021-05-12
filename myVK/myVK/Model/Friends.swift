@@ -98,7 +98,7 @@ class UserPhotos: Object {
     @objc dynamic var owner_id: Int = 0
     @objc dynamic var post_id: Int = 0
     @objc dynamic var text: String = ""
-    @objc dynamic var  likes: Likes?
+    @objc dynamic var likes: Likes?
     let sizes = List<Sizes>()
 
     convenience init(json: SwiftyJSON.JSON) {
