@@ -584,8 +584,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-qR-t4Q">
-                                            <rect key="frame" x="5" y="5" width="145" height="44"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="5" y="5" width="340" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -597,7 +597,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOk-OW-Xiq">
                                             <rect key="frame" x="5" y="25" width="36" height="44"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -606,12 +606,12 @@
                                         <constraint firstAttribute="trailing" secondItem="NAx-Sc-SAb" secondAttribute="trailing" constant="10" id="6dC-Mv-a3G"/>
                                         <constraint firstAttribute="bottom" secondItem="yOk-OW-Xiq" secondAttribute="bottom" constant="5" id="Dwu-k3-CLC"/>
                                         <constraint firstItem="NAx-Sc-SAb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="yOk-OW-Xiq" secondAttribute="trailing" constant="309" id="FwZ-Pt-sCa"/>
-                                        <constraint firstItem="NAx-Sc-SAb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="QlO-qR-t4Q" secondAttribute="trailing" constant="200" id="QSa-go-Pr0"/>
                                         <constraint firstItem="yOk-OW-Xiq" firstAttribute="centerY" secondItem="Wv5-uY-ViE" secondAttribute="centerY" constant="10" id="QXP-uW-GfX"/>
                                         <constraint firstItem="QlO-qR-t4Q" firstAttribute="top" secondItem="Wv5-uY-ViE" secondAttribute="top" constant="5" id="SMR-fg-yoK"/>
                                         <constraint firstItem="QlO-qR-t4Q" firstAttribute="centerY" secondItem="Wv5-uY-ViE" secondAttribute="centerY" constant="-10" id="c67-UY-Orb"/>
                                         <constraint firstItem="NAx-Sc-SAb" firstAttribute="top" secondItem="Wv5-uY-ViE" secondAttribute="top" constant="5" id="jk1-dj-Mc1"/>
                                         <constraint firstItem="yOk-OW-Xiq" firstAttribute="leading" secondItem="Wv5-uY-ViE" secondAttribute="leading" constant="5" id="mUs-I8-t6s"/>
+                                        <constraint firstItem="NAx-Sc-SAb" firstAttribute="leading" secondItem="QlO-qR-t4Q" secondAttribute="trailing" constant="5" id="tHq-uM-jzS"/>
                                         <constraint firstItem="QlO-qR-t4Q" firstAttribute="leading" secondItem="Wv5-uY-ViE" secondAttribute="leading" constant="5" id="vHB-4F-jfD"/>
                                         <constraint firstAttribute="bottom" secondItem="NAx-Sc-SAb" secondAttribute="bottom" constant="5" id="xqt-ED-1iT"/>
                                     </constraints>
@@ -649,15 +649,18 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTextCell" id="UOX-cA-iLs" userLabel="NewsTextCell" customClass="NewsTextCell" customModule="myVK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="399" width="414" height="31"/>
+                                <rect key="frame" x="0.0" y="399" width="414" height="31.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UOX-cA-iLs" id="AHW-Tu-uZX">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NewsText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-Uf-q61">
-                                            <rect key="frame" x="5" y="5" width="404" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NewsText" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-Uf-q61">
+                                            <rect key="frame" x="5" y="5" width="404" height="21.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5fO-5i-RrL"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -674,7 +677,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFooterCell" id="zzC-dd-gtf" userLabel="NewsFooterCell" customClass="NewsFooterCell" customModule="myVK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="430" width="414" height="40.5"/>
+                                <rect key="frame" x="0.0" y="430.5" width="414" height="40.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zzC-dd-gtf" id="SYw-fJ-2me">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40.5"/>
@@ -769,6 +772,14 @@
                                     <outlet property="newsSharedButton" destination="zOw-I7-hMd" id="MiJ-xd-Yv6"/>
                                     <outlet property="newsSharedCounts" destination="H3K-WK-feh" id="1lJ-h9-sqz"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QtR-wd-wkY">
+                                <rect key="frame" x="0.0" y="471" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QtR-wd-wkY" id="hbR-kF-MxG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

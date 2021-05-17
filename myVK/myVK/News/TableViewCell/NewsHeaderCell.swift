@@ -41,8 +41,8 @@ class NewsHeaderCell: UITableViewCell {
     public func configure(with news: NewsFeed) {
         self.source_id = news.source_id
         
-        let ownerGroupNews: Results<Group>? = try? Realm(configuration: realmService.config).objects(Group.self).filter("id == %@",-source_id)
-        let ownerFriendsNews: Results<Friends>? = try? Realm(configuration: realmService.config).objects(Friends.self).filter("id == %@",source_id)
+        let ownerGroupNews: Results<NewsGroup>? = try? Realm(configuration: realmService.config).objects(NewsGroup.self).filter("id == %@",-source_id)
+        let ownerFriendsNews: Results<NewsProfiles>? = try? Realm(configuration: realmService.config).objects(NewsProfiles.self).filter("id == %@",source_id)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -53,7 +53,6 @@ class NewsHeaderCell: UITableViewCell {
         
         if news.source_id < 0 {
             userNameLabel?.text = ownerGroupNews?.first?.name ?? "Bugs"
-            
             self.photoURL = ownerGroupNews?.first?.photo_50 ?? ""
             userImageView?.kf.setImage(with: URL(string: photoURL))
         } else {
