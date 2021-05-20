@@ -68,5 +68,20 @@ class FriendsCollectionViewController: UICollectionViewController {
         cell.configure(with: friend[indexPath.item])
         return cell
     }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowBigPhotoSegue", sender: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let cellIndexPath = collectionView.indexPathsForSelectedItems?.first?.row,
+           let friend = friendPhotos,
+           let friendsPhotosViewController = segue.destination as? FriendsPhotosViewController {
+            friendsPhotosViewController.configure(with: Array(friend), photoIndex: cellIndexPath)
+        }
+    }
 
 }
