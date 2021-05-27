@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CE0EBAB4DDBFE8059C1B72 /* Pods_myVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3DF7EF4EDF85D2BC11EEEC /* Pods_myVK.framework */; };
 		D101BB3225D58AEF0038052B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101BB3125D58AEF0038052B /* AppDelegate.swift */; };
 		D101BB3425D58AEF0038052B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101BB3325D58AEF0038052B /* SceneDelegate.swift */; };
 		D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101BB3525D58AEF0038052B /* LoginViewController.swift */; };
@@ -33,9 +34,7 @@
 		D134D7F525E520C50064E780 /* FriendsCellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7F425E520C50064E780 /* FriendsCellImageView.swift */; };
 		D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7F825E520DB0064E780 /* FriendsCellImageViewSubView.swift */; };
 		D134D7FD25E53BE30064E780 /* GradientMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D7FC25E53BE30064E780 /* GradientMainView.swift */; };
-		D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D13AAE062608F0B8001F6DEC /* Alamofire */; };
 		D13AAE0B2608F4B6001F6DEC /* VKOauthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13AAE0A2608F4B6001F6DEC /* VKOauthWebViewController.swift */; };
-		D14944DD261B76A500DC4AB5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D14944DC261B76A500DC4AB5 /* RealmSwift */; };
 		D1495E52262F1FCF00184CE8 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */; };
 		D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */; };
 		D14A4AEB25F13D8600F55D27 /* GroupsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */; };
@@ -56,12 +55,13 @@
 		D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEB49725F2A7F600A6A25C /* NewsRichXIBCell.swift */; };
 		D1CEB49A25F2A7F600A6A25C /* NewsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1CEB49825F2A7F600A6A25C /* NewsRichXIBCell.xib */; };
 		D1D52AC4262F3DCF00E73D06 /* UICollecitionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D52AC3262F3DCF00E73D06 /* UICollecitionView+Extensions.swift */; };
-		D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */; };
-		D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D1FA0BB62612449C0096DAB2 /* Kingfisher */; };
 		D1FA48DA26272816006090DD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA48D926272816006090DD /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20129B2C10BE4751614E5D64 /* Pods-myVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.release.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.release.xcconfig"; sourceTree = "<group>"; };
+		91C63FDCD1E7E155CCC08A1F /* Pods-myVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.debug.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.debug.xcconfig"; sourceTree = "<group>"; };
+		CA3DF7EF4EDF85D2BC11EEEC /* Pods_myVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D101BB2E25D58AEF0038052B /* myVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D101BB3125D58AEF0038052B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D101BB3325D58AEF0038052B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,21 +119,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D14944DD261B76A500DC4AB5 /* RealmSwift in Frameworks */,
-				D1FA0BB72612449C0096DAB2 /* Kingfisher in Frameworks */,
-				D1FA0BB02610E4F20096DAB2 /* SwiftyJSON in Frameworks */,
-				D13AAE072608F0B8001F6DEC /* Alamofire in Frameworks */,
+				04CE0EBAB4DDBFE8059C1B72 /* Pods_myVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7049003CFFD32F334F6CC4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91C63FDCD1E7E155CCC08A1F /* Pods-myVK.debug.xcconfig */,
+				20129B2C10BE4751614E5D64 /* Pods-myVK.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D101BB2525D58AEF0038052B = {
 			isa = PBXGroup;
 			children = (
 				D101BB3025D58AEF0038052B /* myVK */,
 				D101BB2F25D58AEF0038052B /* Products */,
+				C7049003CFFD32F334F6CC4A /* Pods */,
+				E774124F8A2317225205D954 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -337,6 +346,14 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		E774124F8A2317225205D954 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA3DF7EF4EDF85D2BC11EEEC /* Pods_myVK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,21 +361,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D101BB4225D58AF10038052B /* Build configuration list for PBXNativeTarget "myVK" */;
 			buildPhases = (
+				68C2862B1A061C7E646399F1 /* [CP] Check Pods Manifest.lock */,
 				D101BB2A25D58AEF0038052B /* Sources */,
 				D101BB2B25D58AEF0038052B /* Frameworks */,
 				D101BB2C25D58AEF0038052B /* Resources */,
+				9FAC5AB4BCD0E99168688D94 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = myVK;
-			packageProductDependencies = (
-				D13AAE062608F0B8001F6DEC /* Alamofire */,
-				D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */,
-				D1FA0BB62612449C0096DAB2 /* Kingfisher */,
-				D14944DC261B76A500DC4AB5 /* RealmSwift */,
-			);
 			productName = myVK;
 			productReference = D101BB2E25D58AEF0038052B /* myVK.app */;
 			productType = "com.apple.product-type.application";
@@ -386,12 +399,6 @@
 				Base,
 			);
 			mainGroup = D101BB2525D58AEF0038052B;
-			packageReferences = (
-				D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */,
-				D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				D14944DB261B76A500DC4AB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-			);
 			productRefGroup = D101BB2F25D58AEF0038052B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -416,6 +423,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		68C2862B1A061C7E646399F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FAC5AB4BCD0E99168688D94 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVK/Pods-myVK-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVK/Pods-myVK-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVK/Pods-myVK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D101BB2A25D58AEF0038052B /* Sources */ = {
@@ -607,6 +656,7 @@
 		};
 		D101BB4325D58AF10038052B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91C63FDCD1E7E155CCC08A1F /* Pods-myVK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -626,6 +676,7 @@
 		};
 		D101BB4425D58AF10038052B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20129B2C10BE4751614E5D64 /* Pods-myVK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -665,64 +716,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.1;
-			};
-		};
-		D14944DB261B76A500DC4AB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.7.2;
-			};
-		};
-		D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
-		D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D13AAE062608F0B8001F6DEC /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D13AAE052608F0B8001F6DEC /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		D14944DC261B76A500DC4AB5 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D14944DB261B76A500DC4AB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
-		};
-		D1FA0BAF2610E4F20096DAB2 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D1FA0BAE2610E4F20096DAB2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-		D1FA0BB62612449C0096DAB2 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D1FA0BB52612449C0096DAB2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D101BB2625D58AEF0038052B /* Project object */;
 }
