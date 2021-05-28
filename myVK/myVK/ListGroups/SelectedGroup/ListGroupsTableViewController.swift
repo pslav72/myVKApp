@@ -48,20 +48,16 @@ class ListGroupsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         if !self.getApiGroup {
-            vkApi.vkGroupGet(completion: { [weak self] result in
-                switch result {
-                case let .failure(error):
-                    print(error)
-                case let .success(groups):
+            vkApi.vkGroupGet()
+                .done(on: DispatchQueue.global(qos: .userInteractive)) { groups in
                     do {
-                        try self?.realmService.save(items: groups)
-//                        self?.tableView.reloadData()
+                        try self.realmService.save(items: groups)
                     } catch {
                         print(error)
                     }
-                    self?.getApiGroup = true
+                }.catch { error in
+                    print(error)
                 }
-            })
         }
     }
     
