@@ -13,6 +13,7 @@ class FriendsCollectionViewController: UICollectionViewController {
     let vkApi = VKApi()
     let realmService = RealmService.self
     var friend: Friends?
+    
     private lazy var friendPhotos: Results<UserPhotos>? = try? Realm(configuration: realmService.config).objects(UserPhotos.self).filter("owner_id == %@",friend?.id ?? 0)
     private var friendPhotosNotificationToken: NotificationToken?
 
@@ -64,8 +65,8 @@ class FriendsCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsCollectionViewCell.reuseIdentifier, for: indexPath) as? FriendsCollectionViewCell,
               let friend = friendPhotos
         else {return UICollectionViewCell()}
-        
-        cell.configure(with: friend[indexPath.item])
+        cell.photoService = PhotoService.init(container: self.collectionView)
+        cell.configure(with: friend[indexPath.item], indexPath: indexPath)
         return cell
     }
     

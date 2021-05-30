@@ -26,6 +26,11 @@ class FriendsRichXIBCell: UITableViewCell {
             self.friendsImageButton.layer.backgroundColor = UIColor.systemFill.cgColor
         }
     }
+    
+//    private let photoService = PhotoServiceSimple()
+    var photoService: PhotoService?
+    
+    
     @IBOutlet var friendsShadowView: UIView!
     @IBOutlet var friendsNameLabel: UILabel!
 
@@ -54,9 +59,18 @@ class FriendsRichXIBCell: UITableViewCell {
     }
     
     
-    public func configure(with friends: Friends) {
+    public func configure(with friends: Friends, indexPath: IndexPath) {
         friendsNameLabel.text = friends.name
-        friendsImageButton.kf.setImage(with: URL(string: friends.photoURL))
+        let photoURL = friends.photoURL
+        let imageUser = photoService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+        
+        if let image = imageUser {
+            print("Load from photoService")
+            friendsImageButton.image = image
+        } else {
+            print("Load from kf")
+            friendsImageButton.kf.setImage(with: URL(string: friends.photoURL))
+        }
     }
     
     

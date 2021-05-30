@@ -13,6 +13,8 @@ class GroupsRichXIBCell: UITableViewCell {
     static let reuseIdentifier = "GroupsRichXIBCell"
     static let nibName = "GroupsRichXIBCell"
     
+    var photoService: PhotoService?
+    
     @IBOutlet var groupsImageView: UIImageView! {
         didSet {
             self.groupsImageView.layer.backgroundColor = UIColor.systemFill.cgColor
@@ -38,9 +40,21 @@ class GroupsRichXIBCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func configure(with groups: Group) {
+    public func configure(with groups: Group, indexPath: IndexPath) {
+        
+        let photoURL = groups.image
+        let imageUser = photoService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+        
+        if let image = imageUser {
+            print("Load from photoService")
+            groupsImageView.image = image
+        } else {
+            print("Load from kf")
+            groupsImageView.kf.setImage(with: URL(string: photoURL))
+        }
+        
         groupsNameLabel.text = groups.name
-        groupsImageView.kf.setImage(with: URL(string: groups.image))
+//        groupsImageView.kf.setImage(with: URL(string: groups.image))
     }
     
     

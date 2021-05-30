@@ -13,6 +13,7 @@ class NewsImageCell: UITableViewCell {
     static let reuseIdentifier = "NewsImageCell"
     static let nibName = "NewsImageCell"
     
+    var photoService: PhotoService?
     var photoURL: String = ""
     
     @IBOutlet var newsImageView: UIImageView?
@@ -28,12 +29,22 @@ class NewsImageCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func configure(with news: NewsFeed) {
+    public func configure(with news: NewsFeed, indexPath: IndexPath) {
         newsImageView?.image = UIImage(systemName: "newspaper")
         if let indexAttachments = news.attachments.firstIndex(where: {$0.type == "photo"}),
            let indexPhoto = news.attachments[indexAttachments].photo?.sizes.firstIndex(where: {$0.type == "r"}) {
-            self.photoURL = news.attachments[0].photo?.sizes[indexPhoto].url ?? ""
-            newsImageView?.kf.setImage(with: URL(string: photoURL))
+            photoURL = news.attachments[0].photo?.sizes[indexPhoto].url ?? ""
+            
+            let imageUser = photoService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+            if let image = imageUser {
+                print("Load from photoService")
+                newsImageView?.image = image
+            } else {
+                print("Load from kf")
+                newsImageView?.kf.setImage(with: URL(string: photoURL))
+            }
+            
+            
         }
         }
         

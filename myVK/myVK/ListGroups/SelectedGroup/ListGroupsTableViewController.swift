@@ -97,12 +97,13 @@ class ListGroupsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
+        cell.photoService = PhotoService.init(container: self.tableView)
         if searchActiveGroup, filteredGroup.count > 0 {
-            cell.configure(with: filteredGroup[indexPath.row])
+            cell.configure(with: filteredGroup[indexPath.row], indexPath: indexPath)
         }
         else {
             if let cellGroup = activeGroup {
-                cell.configure(with: cellGroup[indexPath.row])
+                cell.configure(with: cellGroup[indexPath.row], indexPath: indexPath)
             }
         }
         
