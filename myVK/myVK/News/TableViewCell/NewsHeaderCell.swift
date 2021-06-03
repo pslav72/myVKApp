@@ -15,9 +15,24 @@ class NewsHeaderCell: UITableViewCell {
     var source_id: Int = 0
     var photoURL: String = ""
     
-    @IBOutlet var userNameLabel: UILabel?
-    @IBOutlet var dataCreateNews: UILabel?
-    @IBOutlet var userImageView: UIImageView?
+    @IBOutlet var userNameLabel: UILabel!
+    {
+        didSet {
+            userNameLabel.backgroundColor = .white
+        }
+    }
+    @IBOutlet var dataCreateNews: UILabel!
+    {
+        didSet {
+            dataCreateNews.backgroundColor = .white
+        }
+    }
+    @IBOutlet var userImageView: UIImageView!
+    {
+        didSet {
+            userImageView.backgroundColor = .white
+        }
+    }
     
     let vkApi = VKApi()
     let realmService = RealmService.self
@@ -38,27 +53,27 @@ class NewsHeaderCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func configure(with news: NewsFeed) {
+    public func configure(with news: NewsFeed, dateFormatter: DateFormatter) {
         self.source_id = news.source_id
         
         let ownerGroupNews: Results<NewsGroup>? = try? Realm(configuration: realmService.config).objects(NewsGroup.self).filter("id == %@",-source_id)
         let ownerFriendsNews: Results<NewsProfiles>? = try? Realm(configuration: realmService.config).objects(NewsProfiles.self).filter("id == %@",source_id)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        dateFormatter.locale = Locale(identifier: "ru_RU")
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = .medium
+//        dateFormatter.timeStyle = .medium
+//        dateFormatter.locale = Locale(identifier: "ru_RU")
         let date = Date(timeIntervalSince1970: TimeInterval(news.date))
-        dataCreateNews?.text = dateFormatter.string(from: date)
+        dataCreateNews.text = dateFormatter.string(from: date)
         
         if news.source_id < 0 {
-            userNameLabel?.text = ownerGroupNews?.first?.name ?? "Bugs"
+            userNameLabel.text = ownerGroupNews?.first?.name ?? "Bugs"
             self.photoURL = ownerGroupNews?.first?.photo_50 ?? ""
-            userImageView?.kf.setImage(with: URL(string: photoURL))
+            userImageView.kf.setImage(with: URL(string: photoURL))
         } else {
-            userNameLabel?.text = ownerFriendsNews?.first?.name ?? "Bugs"
+            userNameLabel.text = ownerFriendsNews?.first?.name ?? "Bugs"
             self.photoURL = ownerFriendsNews?.first?.photoURL ?? ""
-            userImageView?.kf.setImage(with: URL(string: photoURL))
+            userImageView.kf.setImage(with: URL(string: photoURL))
         }
     
     }

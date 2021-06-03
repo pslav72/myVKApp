@@ -23,7 +23,8 @@ class FriendsRichXIBCell: UITableViewCell {
     
     @IBOutlet var friendsImageButton: UIImageView! {
         didSet {
-            self.friendsImageButton.layer.backgroundColor = UIColor.systemFill.cgColor
+            friendsImageButton.layer.backgroundColor = UIColor.systemFill.cgColor
+            friendsImageButton.backgroundColor = .white
         }
     }
     
@@ -32,7 +33,11 @@ class FriendsRichXIBCell: UITableViewCell {
     
     
     @IBOutlet var friendsShadowView: UIView!
-    @IBOutlet var friendsNameLabel: UILabel!
+    @IBOutlet var friendsNameLabel: UILabel! {
+        didSet {
+            friendsNameLabel.backgroundColor = .white
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

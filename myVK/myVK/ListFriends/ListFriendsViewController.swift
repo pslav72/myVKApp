@@ -28,7 +28,7 @@ class ListFriendsViewController: UITableViewController {
  
     var sectionedUsers: [UserSection] {
         
-        friends!.reduce(into: []) {
+        friends!.reduce(into: []) { [weak self]
             currentSectionUsers, user in
             guard let firstLetter = user.name.first else {return}
             

@@ -20,7 +20,11 @@ class GroupsRichXIBCell: UITableViewCell {
             self.groupsImageView.layer.backgroundColor = UIColor.systemFill.cgColor
         }
     }
-    @IBOutlet var groupsNameLabel: UILabel!
+    @IBOutlet var groupsNameLabel: UILabel! {
+        didSet {
+            groupsNameLabel.backgroundColor = .white
+        }
+    }
     
     private lazy var groupsImageViewTapGestureRecognizer: UITapGestureRecognizer = {
         let groupsImageViewTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(actionTapGroupsImageView))
