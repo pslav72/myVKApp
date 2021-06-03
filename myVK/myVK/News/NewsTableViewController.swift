@@ -17,14 +17,21 @@ class NewsTableViewController: UITableViewController {
     private lazy var newsFeed: Results<NewsFeed>? = try? Realm(configuration: realmService.config).objects(NewsFeed.self).sorted(byKeyPath: "date", ascending: false)
     
     private var newsNotificationToken: NotificationToken?
-    
 
-    
-    
     var next_from: String = ""
+    
+    private let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.locale = Locale(identifier: "ru_RU")
+        df.dateStyle = .medium
+        df.timeStyle = .medium
+//        df.dateFormat = "HH:mm dd MMMM"
+        return df
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
         
         newsNotificationToken = newsFeed?.observe { [weak self] changes in
             switch changes {
@@ -128,7 +135,7 @@ class NewsTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsHeaderCell.reuseIdentifier, for: indexPath) as? NewsHeaderCell else {return UITableViewCell()}
-            cell.configure(with: news[indexEntity])
+            cell.configure(with: news[indexEntity], dateFormatter: dateFormatter)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseIdentifier, for: indexPath) as? NewsTextCell else {return UITableViewCell()}
@@ -147,6 +154,17 @@ class NewsTableViewController: UITableViewController {
             return UITableViewCell()
         }
 
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 2:
+            let height: CGFloat = 300
+            return height
+        default:
+            let height: CGFloat = 44
+            return height
+        }
     }
     
     func nextNews(nextFrom: String) {
@@ -176,7 +194,12 @@ class NewsTableViewController: UITableViewController {
             }
         })
         
+        
     }
 
 
 }
+
+//protocol TTTDelegate: UITableViewDelegate {
+//
+//}

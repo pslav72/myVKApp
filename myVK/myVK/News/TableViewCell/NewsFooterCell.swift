@@ -14,13 +14,47 @@ class NewsFooterCell: UITableViewCell {
     static let nibName = "NewsFooterCell"
     
     @IBOutlet var newsCountViews: UILabel?
-    
+    {
+        didSet {
+            newsCountViews?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsLikeButton: UIButton?
+    {
+        didSet {
+            newsLikeButton?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsLikeCounts: UILabel?
+    {
+        didSet {
+            newsLikeCounts?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsCommentsButton: UIButton?
+    {
+        didSet {
+            newsCommentsButton?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsCommentsCounts: UILabel?
+    {
+        didSet {
+            newsCommentsCounts?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsSharedButton: UIButton?
+    {
+        didSet {
+            newsSharedButton?.backgroundColor = .white
+        }
+    }
     @IBOutlet var newsSharedCounts: UILabel?
+    {
+        didSet {
+            newsSharedCounts?.backgroundColor = .white
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
