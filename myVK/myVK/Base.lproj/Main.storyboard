@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c8L-t8-L87">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -106,6 +105,14 @@
                                             <constraint firstItem="LTl-Fl-ULE" firstAttribute="height" secondItem="iPT-r8-a1M" secondAttribute="height" id="ynh-9o-FTW"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNq-pe-U02">
+                                        <rect key="frame" x="107" y="399" width="200" height="44"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="SignUpButtomPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zf3-NT-mhx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="UZD-xo-a3u" firstAttribute="top" secondItem="1ac-JL-2oZ" secondAttribute="bottom" constant="10" id="3hQ-7b-ZQE"/>
@@ -115,7 +122,10 @@
                                     <constraint firstItem="pNT-SE-iTr" firstAttribute="leading" secondItem="uHb-dF-aHV" secondAttribute="centerX" id="8vA-3i-5pJ"/>
                                     <constraint firstItem="X3d-1X-aAw" firstAttribute="centerY" secondItem="UZD-xo-a3u" secondAttribute="centerY" id="9s0-ms-lv4"/>
                                     <constraint firstItem="UZD-xo-a3u" firstAttribute="leading" secondItem="X3d-1X-aAw" secondAttribute="trailing" constant="40" id="BAv-4t-DGd"/>
+                                    <constraint firstItem="dNq-pe-U02" firstAttribute="top" secondItem="nZ6-bf-sgS" secondAttribute="bottom" constant="25" id="C1w-o1-7vo"/>
+                                    <constraint firstItem="dNq-pe-U02" firstAttribute="centerX" secondItem="nZ6-bf-sgS" secondAttribute="centerX" id="Hzr-Pj-8MQ"/>
                                     <constraint firstItem="pNT-SE-iTr" firstAttribute="leading" secondItem="UZD-xo-a3u" secondAttribute="leading" id="MlZ-CT-X68"/>
+                                    <constraint firstItem="dNq-pe-U02" firstAttribute="trailing" secondItem="nZ6-bf-sgS" secondAttribute="trailing" id="OYl-eK-qdo"/>
                                     <constraint firstItem="nZ6-bf-sgS" firstAttribute="top" secondItem="pNT-SE-iTr" secondAttribute="bottom" constant="50" id="ZJX-pK-TSf"/>
                                     <constraint firstItem="nZ6-bf-sgS" firstAttribute="centerX" secondItem="Fg8-DP-Bol" secondAttribute="centerX" id="agz-LI-ujW"/>
                                     <constraint firstItem="8Vt-PV-jPZ" firstAttribute="top" secondItem="Fg8-DP-Bol" secondAttribute="top" constant="20" id="eap-kJ-1mc"/>
@@ -125,9 +135,11 @@
                                     <constraint firstItem="pNT-SE-iTr" firstAttribute="leading" secondItem="Fg8-DP-Bol" secondAttribute="centerX" id="lgR-BE-aml"/>
                                     <constraint firstItem="1ac-JL-2oZ" firstAttribute="centerX" secondItem="Gtk-Ee-bgX" secondAttribute="centerX" id="liN-7s-YD7"/>
                                     <constraint firstItem="i2V-r3-NHQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Fg8-DP-Bol" secondAttribute="leading" constant="40" id="p7Z-Av-uyM"/>
+                                    <constraint firstItem="dNq-pe-U02" firstAttribute="height" secondItem="nZ6-bf-sgS" secondAttribute="height" id="qmC-z9-k14"/>
                                     <constraint firstItem="1ac-JL-2oZ" firstAttribute="top" secondItem="8Vt-PV-jPZ" secondAttribute="bottom" constant="10" id="reX-FK-FqC"/>
                                     <constraint firstItem="pNT-SE-iTr" firstAttribute="width" secondItem="UZD-xo-a3u" secondAttribute="width" id="s2c-SE-BXq"/>
                                     <constraint firstItem="pNT-SE-iTr" firstAttribute="top" secondItem="UZD-xo-a3u" secondAttribute="bottom" constant="20" id="sKP-NC-3sY"/>
+                                    <constraint firstItem="dNq-pe-U02" firstAttribute="width" secondItem="nZ6-bf-sgS" secondAttribute="width" id="tZq-vH-cJf"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Fg8-DP-Bol"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="uHb-dF-aHV"/>
@@ -289,7 +301,13 @@
                             <outlet property="delegate" destination="xYi-Rl-k5t" id="fnP-bz-jnc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Odj-LH-Iht"/>
+                    <navigationItem key="navigationItem" id="Odj-LH-Iht">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="NiK-8A-3lq">
+                            <connections>
+                                <action selector="logOutButtonPressed:" destination="xYi-Rl-k5t" id="HZs-i3-xLO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="jDL-yJ-qpK" kind="show" identifier="ShowFriendImageSegue" id="UjD-DB-KUM"/>
                     </connections>
@@ -926,7 +944,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="K1g-yD-lUO"/>
+      
+        <segue reference="GuQ-0F-gLP"/>
+
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>

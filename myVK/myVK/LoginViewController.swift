@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -18,13 +19,23 @@ class LoginViewController: UIViewController {
     @IBOutlet var progressLoadView2: UIView!
     @IBOutlet var progressLoadView3: UIView!
     
+    private var listener: AuthStateDidChangeListenerHandle?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        passwordTextField.isSecureTextEntry = true
         // Жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
         scrollView.addGestureRecognizer(hideKeyboardGesture)
+        
+        listener = Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard user != nil else { return }
+            self.proccedToMainScreen()
+            self.lognTextFiled.text = nil
+            self.passwordTextField.text = nil
+        }
 
     }
     
@@ -88,19 +99,72 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
-        // Получаем текст логина
-        let login = lognTextFiled.text!
-        // Получаем текст-пароль
-        let password = passwordTextField.text!
         
-        // Проверяем, верны ли они
-        if login == "" && password == "" {
-            print("успешная авторизация")
-            performSegue(withIdentifier: "MainTabBarSegue", sender: self)
-        } else {
-            print("неуспешная авторизация")
-            showLoginError()
+        guard let email = lognTextFiled.text,
+              let password = passwordTextField.text,
+              email.contains("@"),
+              email.count >= 4,
+              password.count >= 6
+        else {
+            self.show(message: "Email/Password pair is incorrect")
+            return
         }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
+            
+            if let error = error {
+                self?.show(error: error)
+            }
+        }
+        
+    }
+    
+    private func proccedToMainScreen() {
+            performSegue(withIdentifier: "MainTabBarSegue", sender: LoginViewController.self)
+    }
+    
+    @IBAction func SignUpButtomPress(_ sender: UIButton) {
+        let signUpController = deinitUIAlertController(title: "Registration", message: "Please enter your email/password", preferredStyle: .alert)
+        
+        signUpController.addTextField {textFiled in
+            textFiled.placeholder = "Login"
+        }
+        
+        signUpController.addTextField {textFiled in
+            textFiled.placeholder = "Password"
+            textFiled.isSecureTextEntry = true
+        }
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self, weak signUpController] _ in
+            guard let email = signUpController?.textFields?[0].text,
+                  let password = signUpController?.textFields?[1].text,
+                  email.contains("@"),
+                  email.count >= 4,
+                  password.count >= 6
+            else {
+                self?.show(message: "Email/Password pair is incorrect")
+                return
+            }
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                if let error = error {
+                    self?.show(error: error)
+                } else if let credential = result?.credential {
+                    Auth.auth().signIn(with: credential) { (result, error) in
+                        if let error = error {
+                            self?.show(error: error)
+                        }
+                    }
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        signUpController.addAction(okAction)
+        signUpController.addAction(cancelAction)
+        
+        present(signUpController, animated: true, completion: nil)
     }
     
     func showLoginError() {
@@ -117,3 +181,9 @@ class LoginViewController: UIViewController {
     
 }
 
+
+fileprivate class deinitUIAlertController: UIAlertController {
+    deinit {
+        
+    }
+}

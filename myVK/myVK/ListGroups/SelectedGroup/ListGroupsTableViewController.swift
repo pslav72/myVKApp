@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 class ListGroupsTableViewController: UITableViewController {
     
@@ -19,6 +20,10 @@ class ListGroupsTableViewController: UITableViewController {
     var searchActiveGroup : Bool = false
     var filteredGroup : [Group] = []
     var searchText: String = ""
+    
+    var eventsRef = Database
+        .database(url: "https://vkapp-9248f-default-rtdb.europe-west1.firebasedatabase.app")
+        .reference(withPath: "event")
     
     @IBOutlet weak var groupSearchBar: UISearchBar!
     
@@ -94,7 +99,6 @@ class ListGroupsTableViewController: UITableViewController {
             return 0
         }
         else {
-            print(activeGroup?.count ?? 0)
             return activeGroup?.count ?? 0
         }
     }
@@ -107,6 +111,7 @@ class ListGroupsTableViewController: UITableViewController {
         else {
             if let cellGroup = activeGroup {
                 cell.configure(with: cellGroup[indexPath.row])
+                createFirebaseEvent(event: cellGroup[indexPath.row].name)
             }
         }
         
@@ -179,7 +184,19 @@ class ListGroupsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    private func createFirebaseEvent(event: String) {
+        let id =  Int.random(in: 000001...999999)
+        let eventFirebase = FirebaseEvent(id: id, event: event)
+        
+        let eventRef = eventsRef.child(String(id))
+        eventRef.setValue(eventFirebase.toAnyObject() as Any) { [weak self] (error: Error?, _: DatabaseReference) in
+            guard let error = error else { return }
+            self?.show(error: error)
+        }
+    }
+    
 }
+
 
 
 extension ListGroupsTableViewController: UISearchBarDelegate {
