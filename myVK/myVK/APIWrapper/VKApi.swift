@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 class VKApi {
     
@@ -18,7 +19,7 @@ class VKApi {
     
     var nextValue: String? = nil
     
-    func vkFriendsGet(completion: @escaping (Result<[Friends], Error>) -> Void) {
+    func vkFriendsGet(completion: @escaping (Swift.Result<[Friends], Error>) -> Void) {
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host
@@ -75,7 +76,7 @@ class VKApi {
     }
     
     
-    func vkGroupGet(completion: @escaping (Result<[Group], Error>) -> Void) {
+    func vkGroupGet(completion: @escaping (Swift.Result<[Group], Error>) -> Void) {
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host
@@ -106,8 +107,40 @@ class VKApi {
         }
     }
     
+    func vkGroupGet() -> Promise<[Group]> {
+        
+        let scheme = vkApiTarget.scheme
+        let host = vkApiTarget.host
+        let path = vkApiTarget.pathMethod(method: .groupGet)
+        
+        let parameters: Parameters = [
+            "access_token": sessionsToken,
+            "v": vkApiTarget.apiVersion,
+            "extended": 1
+        ]
+        
+        return Promise.init { resolver in
+            Alamofire.AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+                switch response.result {
+                case .failure(let error):
+                    resolver.reject(error)
+                case .success(let data):
+                    guard let data = data else { return }
+                    do {
+                        let json = try JSON(data: data)
+                        let groupGetJSON = json["response"]["items"].arrayValue
+                        let groupGet = groupGetJSON.map { Group(json: $0) }
+                        resolver.fulfill(groupGet)
+                    } catch  {
+                        resolver.reject(error)
+                    }
+                }
+            }
+        }
+    }
     
-    func vkGroupSearch(searchString: String = "", completion: @escaping (Result<[Group], Error>) -> Void) {
+    
+    func vkGroupSearch(searchString: String = "", completion: @escaping (Swift.Result<[Group], Error>) -> Void) {
         
         guard searchString.count > 3 else {
             return
@@ -145,7 +178,7 @@ class VKApi {
     }
     
     
-    func vkphotosGet(owner_id: Int = 0, album_id: String = "profile", completion: @escaping (Result<[UserPhotos], Error>) -> Void) {
+    func vkphotosGet(owner_id: Int = 0, album_id: String = "profile", completion: @escaping (Swift.Result<[UserPhotos], Error>) -> Void) {
         
         guard owner_id != 0 else {
             return
@@ -183,7 +216,7 @@ class VKApi {
         }
     }
     
-    func vkNewsFeed(completion: @escaping (Result<JSON, Error>) -> Void) {
+    func vkNewsFeed(completion: @escaping (Swift.Result<JSON, Error>) -> Void) {
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host

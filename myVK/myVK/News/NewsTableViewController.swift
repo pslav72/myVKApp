@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import RealmSwift
+import SwiftyJSON
 
 class NewsTableViewController: UITableViewController {
     
@@ -16,6 +17,8 @@ class NewsTableViewController: UITableViewController {
     private lazy var newsFeed: Results<NewsFeed>? = try? Realm(configuration: realmService.config).objects(NewsFeed.self).sorted(byKeyPath: "date", ascending: false)
     
     private var newsNotificationToken: NotificationToken?
+    
+
     
     
     var next_from: String = ""
@@ -39,47 +42,60 @@ class NewsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let dispatchGroup = DispatchGroup()
         
         vkApi.vkNewsFeed(completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(json):
-//                do {
-                    let newsFeedJSON = json["response"]["items"].arrayValue
-                    let newsGroupsJSON = json["response"]["groups"].arrayValue
-                    let newsProfilesJSON = json["response"]["profiles"].arrayValue
-                    self?.next_from = json["response"]["next_from"].stringValue
-                    let newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
-                    let newsGroups = newsGroupsJSON.map { NewsGroup(json: $0) }
-                    let newsProfiles = newsProfilesJSON.map { NewsProfiles(json: $0) }
-                    DispatchQueue.global().async {
+                
+                var newsFeedJSON: [JSON] = []
+                var newsGroupsJSON: [JSON] = []
+                var newsProfilesJSON: [JSON] = []
+                
+                var newsFeed: [NewsFeed] = []
+                var newsGroups: [NewsGroup] = []
+                var newsProfiles: [NewsProfiles] = []
+                
+                DispatchQueue.global().async(group: dispatchGroup) {
+                    newsFeedJSON = json["response"]["items"].arrayValue
+                    newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
+                }
+                DispatchQueue.global().async(group: dispatchGroup) {
+                    newsGroupsJSON = json["response"]["groups"].arrayValue
+                    newsGroups = newsGroupsJSON.map { NewsGroup(json: $0) }
+                }
+                DispatchQueue.global().async(group: dispatchGroup) {
+                    newsProfilesJSON = json["response"]["profiles"].arrayValue
+                    newsProfiles = newsProfilesJSON.map { NewsProfiles(json: $0) }
+                }
+                
+                self?.next_from = json["response"]["next_from"].stringValue
+                
+                dispatchGroup.notify(queue: DispatchQueue.global()) {
+                    DispatchQueue.main.async(group: dispatchGroup) {
                         do {
                             try self?.realmService.save(items: newsFeed)
                         } catch  {
                             print(error)
                         }
                     }
-                    DispatchQueue.global().async {
+                    DispatchQueue.main.async(group: dispatchGroup) {
                         do {
                             try self?.realmService.save(items: newsGroups)
                         } catch  {
                             print(error)
                         }
                     }
-                    DispatchQueue.global().async {
+                    DispatchQueue.main.async(group: dispatchGroup) {
                         do {
                             try self?.realmService.save(items: newsProfiles)
                         } catch  {
                             print(error)
                         }
                     }
-//                    try self?.realmService.save(items: newsFeed)
-//                    try self?.realmService.save(items: newsGroups)
-//                    try self?.realmService.save(items: newsProfiles)
-//                } catch {
-//                    print(error)
-//                }
+                }
 
             }
         })
@@ -101,8 +117,6 @@ class NewsTableViewController: UITableViewController {
         guard let news = newsFeed else {
             return UITableViewCell()
         }
-        
-//        print("\(indexEntity) = \(indexPath.row) = \(newsFeed?.count) = \(next_from)")
         
         let nextValue = newsFeed!.count - 2
         
@@ -136,10 +150,9 @@ class NewsTableViewController: UITableViewController {
     
     func nextNews(nextFrom: String) {
         
-        let tt = vkApi
-        tt.nextValue = nextFrom
+        vkApi.nextValue = nextFrom
         
-        tt.vkNewsFeed(completion: { [weak self] result in
+        vkApi.vkNewsFeed(completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 print(error)
