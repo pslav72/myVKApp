@@ -44,8 +44,8 @@ class AddGroupTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsRichXIBCell.reuseIdentifier, for: indexPath) as? GroupsRichXIBCell else { return UITableViewCell()}
-        
-        cell.configure(with: groups[indexPath.row])
+        cell.photoService = PhotoService.init(container: self.tableView)
+        cell.configure(with: groups[indexPath.row], indexPath: indexPath)
         return cell
     }
     

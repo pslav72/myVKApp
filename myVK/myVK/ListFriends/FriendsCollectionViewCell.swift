@@ -17,14 +17,16 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     var heartImage: String = "heart"
     
     var photoURL: String = ""
+    var photoService: PhotoService?
     
     @IBOutlet var friendCollectionImage: UIImageView!
     @IBOutlet var friendLikeButton: UIButton!
     @IBOutlet var friendLikeCount: UILabel!
     
-    func configure(with friend: UserPhotos) {
+    func configure(with friend: UserPhotos, indexPath: IndexPath) {
         
-        guard let friendLikes = friend.likes else { return }
+        guard let friendLikes = friend.likes
+              else { return }
         
         countsLike = friendLikes.count
         isLiked = friendLikes.user_likes
@@ -34,8 +36,18 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         }
         
         heartImage = (isLiked != 0) ? "heart.fill" : "heart"
-
-        friendCollectionImage.kf.setImage(with: URL(string: photoURL))
+        
+        let imageUser = photoService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+        
+        if let image = imageUser {
+            print("Load from photoService")
+            friendCollectionImage.image = image
+        } else {
+            print("Load from kf")
+            friendCollectionImage.kf.setImage(with: URL(string: photoURL))
+        }
+        
+//        friendCollectionImage.kf.setImage(with: URL(string: photoURL))
         friendLikeCount.text = String(countsLike)
         friendLikeButton.setImage(UIImage(systemName: heartImage), for: .normal)
         friendLikeButton.addTarget(self, action: #selector(buttonTappedLike), for: .touchUpInside)

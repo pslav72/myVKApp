@@ -136,7 +136,8 @@ class NewsTableViewController: UITableViewController {
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsImageCell.reuseIdentifier, for: indexPath) as? NewsImageCell else {return UITableViewCell()}
-            cell.configure(with: news[indexEntity])
+            cell.photoService = PhotoService.init(container: self.tableView)
+            cell.configure(with: news[indexEntity], indexPath: indexPath)
             return cell
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsFooterCell.reuseIdentifier, for: indexPath) as? NewsFooterCell else {return UITableViewCell()}

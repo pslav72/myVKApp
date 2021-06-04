@@ -141,8 +141,8 @@ class ListFriendsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendsRichXIBCell.reuseIdentifier, for: indexPath) as? FriendsRichXIBCell else { return UITableViewCell() }
-        
-        cell.configure(with: sectionedUsers[indexPath.section].users[indexPath.row])
+        cell.photoService = PhotoService.init(container: self.tableView)
+        cell.configure(with: sectionedUsers[indexPath.section].users[indexPath.row], indexPath: indexPath)
         cell.selectionStyle = .none
         
         return cell
