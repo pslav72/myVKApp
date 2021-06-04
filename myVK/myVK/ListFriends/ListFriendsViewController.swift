@@ -16,6 +16,14 @@ class ListFriendsViewController: UITableViewController {
     let realmService = RealmService.self
     private lazy var friends: Results<Friends>? = try? Realm(configuration: realmService.config).objects(Friends.self)
     
+    let operationQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.maxConcurrentOperationCount = 1
+        q.name = "ru.polyakov.operation.friendGet"
+        q.qualityOfService = .userInitiated
+        return q
+    }()
+    
     private var friendsNotificationToken: NotificationToken?
  
     var sectionedUsers: [UserSection] {
@@ -63,20 +71,38 @@ class ListFriendsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        vkApi.vkFriendsGet(completion: { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(friends):
-                do {
-                    try self?.realmService.save(items: friends)
-//                    self?.tableView.reloadData()
-                } catch {
-                    print(error)
-                }
+        
+        let friendsLoadingOperation = FriendsLoadingOperation()
 
-            }
-        })
+        let friendsParseOperation = FriendsParseOperation()
+        friendsParseOperation.addDependency(friendsLoadingOperation)
+
+
+        let saveParseOperation = SaveParseOperation()
+        saveParseOperation.addDependency(friendsParseOperation)
+        
+        operationQueue.addOperations([friendsLoadingOperation, friendsParseOperation, saveParseOperation], waitUntilFinished:  false)
+        
+//        vkApi.vkFriendsGet(completion: { [weak self] result in
+//            switch result {
+//            case let .failure(error):
+//                print(error)
+//            case let .success(friends):
+//                do {
+//                    try self?.realmService.save(items: friends)
+////                    self?.tableView.reloadData()
+//                } catch {
+//                    print(error)
+//                }
+//
+//            }
+//        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        operationQueue.cancelAllOperations()
     }
     
     

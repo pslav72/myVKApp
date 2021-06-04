@@ -306,25 +306,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ps1-7O-xlR">
+                                <rect key="frame" x="0.0" y="243.5" width="414" height="414"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ps1-7O-xlR" secondAttribute="height" multiplier="1:1" id="nb9-NO-LaK"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YU3-mx-Z9G">
-                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="243.5" width="414" height="414"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="YU3-mx-Z9G" secondAttribute="height" multiplier="1:1" id="gh8-7k-DUc"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ps1-7O-xlR">
-                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ps1-7O-xlR" secondAttribute="height" multiplier="1:1" id="nb9-NO-LaK"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="EaQ-Xa-lC4" appends="YES" id="qiA-n4-0RM"/>
-                                </connections>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nr-sy-Dq5">
-                                <rect key="frame" x="0.0" y="827" width="414" height="35"/>
+                                <rect key="frame" x="0.0" y="778" width="414" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grU-Cd-nde">
                                         <rect key="frame" x="12" y="5" width="25" height="25"/>
@@ -336,7 +333,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btg-sz-AHU">
                                         <rect key="frame" x="49" y="5" width="41.5" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -371,7 +368,8 @@
                             <constraint firstItem="1Nr-sy-Dq5" firstAttribute="trailing" secondItem="nkS-lg-9TM" secondAttribute="trailing" id="jL3-CS-aHZ"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="9hq-bh-dnX" appends="YES" id="jqI-uZ-h0n"/>
+                            <outletCollection property="gestureRecognizers" destination="9hq-bh-dnX" appends="YES" id="aU2-JU-ZTd"/>
+                            <outletCollection property="gestureRecognizers" destination="EaQ-Xa-lC4" appends="YES" id="wUR-t6-0dz"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="COW-rk-PAM"/>
@@ -394,7 +392,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2087" y="-975"/>
+            <point key="canvasLocation" x="2878" y="-317"/>
         </scene>
         <!--Friends Collection View Controller-->
         <scene sceneID="XKN-qg-DHc">
@@ -462,6 +460,7 @@
                                     <outlet property="friendCollectionImage" destination="Uu3-6L-D2r" id="c9y-0r-LDT"/>
                                     <outlet property="friendLikeButton" destination="lSi-Pn-gkL" id="6rP-pJ-jeY"/>
                                     <outlet property="friendLikeCount" destination="Zbh-km-Add" id="OwJ-z9-lBX"/>
+                                    <segue destination="Zpb-He-1I8" kind="show" identifier="ShowBigPhotoSegue" id="0dj-mi-kSB"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -474,7 +473,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyS-uo-zUS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087" y="-289"/>
+            <point key="canvasLocation" x="2074" y="-317"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="DPp-63-l8e">

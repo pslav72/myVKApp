@@ -39,6 +39,10 @@
 		D1495E52262F1FCF00184CE8 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */; };
 		D14A4AEA25F13D8600F55D27 /* GroupsRichXIBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */; };
 		D14A4AEB25F13D8600F55D27 /* GroupsRichXIBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */; };
+		D14E90FE265C15E000A4DCDA /* FriendsLoadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E90FD265C15E000A4DCDA /* FriendsLoadingOperation.swift */; };
+		D14E9100265C194F00A4DCDA /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E90FF265C194F00A4DCDA /* AsyncOperation.swift */; };
+		D14E9103265C2EE600A4DCDA /* FriendsParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E9102265C2EE600A4DCDA /* FriendsParseOperation.swift */; };
+		D14E9105265C312300A4DCDA /* SaveParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E9104265C312300A4DCDA /* SaveParseOperation.swift */; };
 		D150351A26073D2A0048CA1D /* SessionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D150351926073D2A0048CA1D /* SessionsUser.swift */; };
 		D15CC83A260909D400EA0B09 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CC839260909D400EA0B09 /* VKApi.swift */; };
 		D15CC8412609116300EA0B09 /* VKApiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CC8402609116300EA0B09 /* VKApiTarget.swift */; };
@@ -90,6 +94,10 @@
 		D1495E51262F1FCF00184CE8 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		D14A4AE825F13D8600F55D27 /* GroupsRichXIBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRichXIBCell.swift; sourceTree = "<group>"; };
 		D14A4AE925F13D8600F55D27 /* GroupsRichXIBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsRichXIBCell.xib; sourceTree = "<group>"; };
+		D14E90FD265C15E000A4DCDA /* FriendsLoadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsLoadingOperation.swift; sourceTree = "<group>"; };
+		D14E90FF265C194F00A4DCDA /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		D14E9102265C2EE600A4DCDA /* FriendsParseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsParseOperation.swift; sourceTree = "<group>"; };
+		D14E9104265C312300A4DCDA /* SaveParseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveParseOperation.swift; sourceTree = "<group>"; };
 		D150351926073D2A0048CA1D /* SessionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsUser.swift; sourceTree = "<group>"; };
 		D15CC839260909D400EA0B09 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
 		D15CC8402609116300EA0B09 /* VKApiTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApiTarget.swift; sourceTree = "<group>"; };
@@ -140,6 +148,7 @@
 		D101BB3025D58AEF0038052B /* myVK */ = {
 			isa = PBXGroup;
 			children = (
+				D14E9101265C1FD500A4DCDA /* Operation */,
 				D1495E50262F1F9400184CE8 /* Extensions */,
 				D128065B25FFB408008C9F07 /* Animation */,
 				D15CC8372609098300EA0B09 /* APIWrapper */,
@@ -260,6 +269,17 @@
 				D183E2A425F273F100D3D30F /* UserFirstLetterHeaderView.swift */,
 			);
 			path = RichCellXIB;
+			sourceTree = "<group>";
+		};
+		D14E9101265C1FD500A4DCDA /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				D14E90FF265C194F00A4DCDA /* AsyncOperation.swift */,
+				D14E90FD265C15E000A4DCDA /* FriendsLoadingOperation.swift */,
+				D14E9102265C2EE600A4DCDA /* FriendsParseOperation.swift */,
+				D14E9104265C312300A4DCDA /* SaveParseOperation.swift */,
+			);
+			path = Operation;
 			sourceTree = "<group>";
 		};
 		D150351826073D0E0048CA1D /* Sessions */ = {
@@ -415,10 +435,12 @@
 				D1CEB49425F2A79200A6A25C /* NewsTableViewController.swift in Sources */,
 				D134D7E725E4090A0064E780 /* FriendsCollectionViewCell.swift in Sources */,
 				D128065D25FFB44B008C9F07 /* UserAnimationNavigationController.swift in Sources */,
+				D14E9103265C2EE600A4DCDA /* FriendsParseOperation.swift in Sources */,
 				D183E2A925F2A33300D3D30F /* GroupSearchBar.swift in Sources */,
 				D1CEB49925F2A7F600A6A25C /* NewsRichXIBCell.swift in Sources */,
 				D15CC8412609116300EA0B09 /* VKApiTarget.swift in Sources */,
 				D134D7F925E520DB0064E780 /* FriendsCellImageViewSubView.swift in Sources */,
+				D14E9105265C312300A4DCDA /* SaveParseOperation.swift in Sources */,
 				D1FA48DA26272816006090DD /* RealmService.swift in Sources */,
 				D183E2A525F273F100D3D30F /* UserFirstLetterHeaderView.swift in Sources */,
 				D101BB3625D58AEF0038052B /* LoginViewController.swift in Sources */,
@@ -437,8 +459,10 @@
 				D134D7E325E3D8C70064E780 /* FriendsCollectionViewController.swift in Sources */,
 				D1D52AC4262F3DCF00E73D06 /* UICollecitionView+Extensions.swift in Sources */,
 				D132780125E02A560071EF0E /* Friends.swift in Sources */,
+				D14E90FE265C15E000A4DCDA /* FriendsLoadingOperation.swift in Sources */,
 				D128066125FFB6B4008C9F07 /* TopRigthRotateAnimation.swift in Sources */,
 				D10DAD2C25E6AEE200C7C564 /* AddGroupTableViewCell.swift in Sources */,
+				D14E9100265C194F00A4DCDA /* AsyncOperation.swift in Sources */,
 				D11176212646F35400D2428F /* NewsFooterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
