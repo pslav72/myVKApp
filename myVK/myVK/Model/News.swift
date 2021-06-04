@@ -145,6 +145,69 @@ class Views: EmbeddedObject {
     }
 }
 
+class NewsProfiles: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var image: String = ""
+    @objc dynamic var photo_50: String = ""
+    @objc dynamic var photo_100: String = ""
+    @objc dynamic var photoURL: String = ""
+    
+    convenience init(json: SwiftyJSON.JSON) {
+        self.init()
+        
+        self.id = json["id"].intValue
+        self.name = json["last_name"].stringValue
+        self.image = json["photo_50"].stringValue
+        self.photo_50 = json["photo_50"].stringValue
+        self.photo_100 = json["photo_100"].stringValue
+        self.photoURL = self.photo_100
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+class NewsGroup: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var screen_name: String = ""
+    @objc dynamic var is_closed: Int8 = 0
+    @objc dynamic var type: String = ""
+    @objc dynamic var is_admin: Int8 = 0
+    @objc dynamic var is_member: Int8 = 0
+    @objc dynamic var is_advertiser: Int8 = 0
+    @objc dynamic var photo_50: String = ""
+    @objc dynamic var photo_100: String = ""
+    @objc dynamic var photo_200: String = ""
+    
+    @objc dynamic var image: String = ""
+    
+    convenience init(json: SwiftyJSON.JSON) {
+        self.init()
+
+        self.id = json["id"].intValue
+        self.name = json["name"].stringValue
+        self.screen_name = json["screen_name"].stringValue
+        self.is_closed = json["is_closed"].int8Value
+        self.type = json["type"].stringValue
+        self.is_admin = json["is_admin"].int8Value
+        self.is_member = json["is_member"].int8Value
+        self.is_advertiser = json["is_advertiser"].int8Value
+        self.photo_50 = json["photo_50"].stringValue
+        self.photo_100 = json["photo_100"].stringValue
+        self.photo_200 = json["photo_200"].stringValue
+        self.image = self.photo_100
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
+}
+
+
 //class Sizes: EmbeddedObject {
 //    @objc dynamic var height: Int = 0
 //    @objc dynamic var url: String = ""

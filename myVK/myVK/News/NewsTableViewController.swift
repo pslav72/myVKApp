@@ -11,39 +11,14 @@ import RealmSwift
 
 class NewsTableViewController: UITableViewController {
     
-//    var news = [
-//        News(user: "Анна Петрова", userImage: UIImage(systemName: "person"), dataCreateNews: "2021-01-01 00:00:00", header: "Большая новость 1", image: UIImage(systemName: "person"), photos: [
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 1", like: true, countsLike: Int.random(in: 0...100)),
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 2", like: false, countsLike: Int.random(in: 0...100)),
-//        ], newsComment: [
-//            NewsComments(comment: "Комментарий 1", like: true, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 2", like: false, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 3", like: false, countsLike: Int.random(in: 0...1000)),
-//        ]),
-//        News(user: "Оля Иванова", userImage: UIImage(systemName: "person.2"), dataCreateNews: "2021-01-01 00:00:00", header: "Большая новость 2", image: UIImage(systemName: "person"), photos: [
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 1", like: false, countsLike: Int.random(in: 0...100)),
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 2", like: true, countsLike: Int.random(in: 0...100)),
-//        ], newsComment: [
-//            NewsComments(comment: "Комментарий 1", like: false, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 2", like: false, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 3", like: true, countsLike: Int.random(in: 0...1000)),
-//        ]),
-//        News(user: "Катя Ивановна", userImage: UIImage(systemName: "person"), dataCreateNews: "2021-01-01 00:00:00", header: "Большая новость 3", image: UIImage(systemName: "person"), photos: [
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 1", like: false, countsLike: Int.random(in: 0...100)),
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 2", like: true, countsLike: Int.random(in: 0...100)),
-//            NewsPhotos(image: UIImage(systemName: "person"), description: "Описание к фото 3", like: false, countsLike: Int.random(in: 0...100)),
-//        ], newsComment: [
-//            NewsComments(comment: "Комментарий 1", like: false, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 2", like: true, countsLike: Int.random(in: 0...1000)),
-//            NewsComments(comment: "Комментарий 3", like: false, countsLike: Int.random(in: 0...1000)),
-//        ]),
-//    ]
-
     let vkApi = VKApi()
     let realmService = RealmService.self
-    private lazy var newsFeed: Results<NewsFeed>? = try? Realm(configuration: realmService.config).objects(NewsFeed.self)
+    private lazy var newsFeed: Results<NewsFeed>? = try? Realm(configuration: realmService.config).objects(NewsFeed.self).sorted(byKeyPath: "date", ascending: false)
     
     private var newsNotificationToken: NotificationToken?
+    
+    
+    var next_from: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +28,7 @@ class NewsTableViewController: UITableViewController {
             case .initial:
                 print("Initial")
             case let .update(_, deletions, insertions, modifications):
-                print(deletions, insertions, modifications)
+//                print(deletions, insertions, modifications)
                 self?.tableView.reloadData()
             case let  .error(error):
                 print(error)
@@ -69,19 +44,48 @@ class NewsTableViewController: UITableViewController {
             switch result {
             case let .failure(error):
                 print(error)
-            case let .success(newsFeed):
-                do {
-                    try self?.realmService.save(items: newsFeed)
-                } catch {
-                    print(error)
-                }
+            case let .success(json):
+//                do {
+                    let newsFeedJSON = json["response"]["items"].arrayValue
+                    let newsGroupsJSON = json["response"]["groups"].arrayValue
+                    let newsProfilesJSON = json["response"]["profiles"].arrayValue
+                    self?.next_from = json["response"]["next_from"].stringValue
+                    let newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
+                    let newsGroups = newsGroupsJSON.map { NewsGroup(json: $0) }
+                    let newsProfiles = newsProfilesJSON.map { NewsProfiles(json: $0) }
+                    DispatchQueue.global().async {
+                        do {
+                            try self?.realmService.save(items: newsFeed)
+                        } catch  {
+                            print(error)
+                        }
+                    }
+                    DispatchQueue.global().async {
+                        do {
+                            try self?.realmService.save(items: newsGroups)
+                        } catch  {
+                            print(error)
+                        }
+                    }
+                    DispatchQueue.global().async {
+                        do {
+                            try self?.realmService.save(items: newsProfiles)
+                        } catch  {
+                            print(error)
+                        }
+                    }
+//                    try self?.realmService.save(items: newsFeed)
+//                    try self?.realmService.save(items: newsGroups)
+//                    try self?.realmService.save(items: newsProfiles)
+//                } catch {
+//                    print(error)
+//                }
 
             }
         })
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print("=> \(newsFeed?.count ?? 0)")
         return newsFeed?.count ?? 0
     }
 
@@ -98,28 +102,66 @@ class NewsTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        if indexPath.row == 0 {
+//        print("\(indexEntity) = \(indexPath.row) = \(newsFeed?.count) = \(next_from)")
+        
+        let nextValue = newsFeed!.count - 2
+        
+        if indexEntity == nextValue,
+           indexPath.row == 0 {
+            nextNews(nextFrom: next_from)
+        }
+        
+        switch indexPath.row {
+        case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsHeaderCell.reuseIdentifier, for: indexPath) as? NewsHeaderCell else {return UITableViewCell()}
-//            cell.source_id = news[indexEntity].source_id
             cell.configure(with: news[indexEntity])
             return cell
-        }
-        else if indexPath.row == 1 {
+        case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTextCell.reuseIdentifier, for: indexPath) as? NewsTextCell else {return UITableViewCell()}
             cell.configure(with: news[indexEntity])
             return cell
-        }
-        else if indexPath.row == 2 {
+        case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsImageCell.reuseIdentifier, for: indexPath) as? NewsImageCell else {return UITableViewCell()}
             cell.configure(with: news[indexEntity])
             return cell
-        }
-        else {
+        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsFooterCell.reuseIdentifier, for: indexPath) as? NewsFooterCell else {return UITableViewCell()}
             cell.configure(with: news[indexEntity])
             return cell
+        default:
+            return UITableViewCell()
         }
 
+    }
+    
+    func nextNews(nextFrom: String) {
+        
+        let tt = vkApi
+        tt.nextValue = nextFrom
+        
+        tt.vkNewsFeed(completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(json):
+                do {
+                    let newsFeedJSON = json["response"]["items"].arrayValue
+                    let newsGroupsJSON = json["response"]["groups"].arrayValue
+                    let newsProfilesJSON = json["response"]["profiles"].arrayValue
+                    self?.next_from = json["response"]["next_from"].stringValue
+                    let newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
+                    let newsGroups = newsGroupsJSON.map { NewsGroup(json: $0) }
+                    let newsProfiles = newsProfilesJSON.map { NewsProfiles(json: $0) }
+                    try self?.realmService.save(items: newsFeed)
+                    try self?.realmService.save(items: newsGroups)
+                    try self?.realmService.save(items: newsProfiles)
+                } catch {
+                    print(error)
+                }
+
+            }
+        })
+        
     }
 
 
