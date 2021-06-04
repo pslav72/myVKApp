@@ -78,11 +78,11 @@ class NewsRichXIBCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func configure(with news: News) {
-        userImageView.image = news.userImage
-        userNameLabel.text = news.user
-        dataCreateNews.text = news.dataCreateNews
-        newsImage.image = news.image
+    public func configure(with news: NewsFeed) {
+        userImageView.image = UIImage(systemName: "text.bubble")
+        userNameLabel.text = news.text
+        dataCreateNews.text = String(news.date)
+        newsImage.image = UIImage(systemName: "text.bubble")
     }
     
 }

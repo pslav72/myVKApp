@@ -16,6 +16,8 @@ class VKApi {
     
     let vkApiTarget = VKApiTarget()
     
+    var nextValue: String? = nil
+    
     func vkFriendsGet(completion: @escaping (Result<[Friends], Error>) -> Void) {
         
         let scheme = vkApiTarget.scheme
@@ -180,6 +182,50 @@ class VKApi {
             }
         }
     }
+    
+    func vkNewsFeed(completion: @escaping (Result<JSON, Error>) -> Void) {
+        
+        let scheme = vkApiTarget.scheme
+        let host = vkApiTarget.host
+        let path = vkApiTarget.pathMethod(method: .newsFeed)
+        
+        var parameters: Parameters = [
+            "access_token": sessionsToken,
+            "v": vkApiTarget.apiVersion,
+            "filters": "friend,post",
+            "max_photos": "1",
+            "count": "10"
+        ]
+        
+        if nextValue != nil {
+            parameters["start_from"] = nextValue
+        }
+        
+        Alamofire.AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            case .success (let data):
+                guard let data = data else { return }
+                do {
+                    let json = try JSON(data: data)
+//                    let newsFeedJSON = json["response"]["items"].arrayValue
+//                    let newsGroupsJSON = json["response"]["groups"].arrayValue
+//                    let newsProfilesJSON = json["response"]["profiles"].arrayValue
+//                    let newsFeed = newsFeedJSON.map { NewsFeed(json: $0) }
+//                    let newsGroups = newsGroupsJSON.map { NewsFeed(json: $0) }
+//                    let newsProfiles = newsProfilesJSON.map { NewsFeed(json: $0) }
+                    completion(.success(json))
+                } catch {
+                    completion(.failure(error))
+                }
+                
+            }
+        }
+        
+    }
+
     
     
 }
