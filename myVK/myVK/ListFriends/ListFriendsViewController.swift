@@ -14,11 +14,13 @@ class ListFriendsViewController: UITableViewController {
     
     let vkApi = VKApi()
     let realmService = RealmService.self
-    private lazy var friends: Results<Friends> = try! Realm(configuration: realmService.config).objects(Friends.self)
+    private lazy var friends: Results<Friends>? = try? Realm(configuration: realmService.config).objects(Friends.self)
     
+    private var friendsNotificationToken: NotificationToken?
+ 
     var sectionedUsers: [UserSection] {
         
-        friends.reduce(into: []) {
+        friends!.reduce(into: []) {
             currentSectionUsers, user in
             guard let firstLetter = user.name.first else {return}
             
@@ -39,6 +41,23 @@ class ListFriendsViewController: UITableViewController {
         
         tableView.register(UINib(nibName: FriendsRichXIBCell.nibName, bundle: nil), forCellReuseIdentifier: FriendsRichXIBCell.reuseIdentifier)
         tableView.register(UserFirstLetterHeaderView.self, forHeaderFooterViewReuseIdentifier: UserFirstLetterHeaderView.reuseIdentifier)
+        
+
+        
+        friendsNotificationToken = friends?.observe { [weak self] changes in
+            switch changes {
+            case .initial:
+                print("Initial")
+//                self?.tableView.reloadData()
+            case let .update(_, deletions, insertions, modifications):
+                print(deletions, insertions, modifications)
+                self?.tableView.reloadData()
+//                self?.tableView.apply(deletions: deletions, insertions: insertions, modifications: modifications)
+            case let  .error(error):
+                print(error)
+            }
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +70,7 @@ class ListFriendsViewController: UITableViewController {
             case let .success(friends):
                 do {
                     try self?.realmService.save(items: friends)
-                    self?.tableView.reloadData()
+//                    self?.tableView.reloadData()
                 } catch {
                     print(error)
                 }
@@ -83,11 +102,14 @@ class ListFriendsViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return sectionedUsers.count
+//        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return sectionedUsers[section].users.count
+//        print(friends?.count ?? 4)
+//        return friends?.count ?? 0
     }
 
     
