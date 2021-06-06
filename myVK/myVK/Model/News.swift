@@ -102,6 +102,7 @@ class Photo: EmbeddedObject {
     @objc dynamic var owner_id: Int = 0
     @objc dynamic var has_tags: Bool = false
     @objc dynamic var access_key: String = ""
+
     let sizes = List<Sizes>()
     
     convenience init(json: SwiftyJSON.JSON) {

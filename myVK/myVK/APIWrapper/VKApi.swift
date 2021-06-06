@@ -216,7 +216,7 @@ class VKApi {
         }
     }
     
-    func vkNewsFeed(completion: @escaping (Swift.Result<JSON, Error>) -> Void) {
+    func vkNewsFeed(startTime: Int? = nil, nextFrom: String? = nil, completion: @escaping (Swift.Result<JSON, Error>) -> Void) {
         
         let scheme = vkApiTarget.scheme
         let host = vkApiTarget.host
@@ -230,8 +230,12 @@ class VKApi {
             "count": "10"
         ]
         
-        if nextValue != nil {
-            parameters["start_from"] = nextValue
+        if let startTime = startTime {
+            parameters["start_time"] = String(startTime)
+        }
+        
+        if let nextFrom = nextFrom {
+            parameters["start_from"] = nextFrom
         }
         
         Alamofire.AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
