@@ -126,6 +126,13 @@ class Sizes: EmbeddedObject {
     @objc dynamic var type: String = ""
     @objc dynamic var width: Int = 0
     
+    @objc dynamic var aspectRation: CGFloat {
+        guard width != 0 else {
+            return 0
+        }
+        return (CGFloat(height)/CGFloat(width)).rounded()
+    }
+    
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         
