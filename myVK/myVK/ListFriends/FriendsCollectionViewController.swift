@@ -44,7 +44,6 @@ class FriendsCollectionViewController: UICollectionViewController {
             case let .success(friendPhotos):
                 do {
                     try self?.realmService.save(items: friendPhotos)
-//                    self?.collectionView.reloadData()
                 } catch {
                     print(error)
                 }

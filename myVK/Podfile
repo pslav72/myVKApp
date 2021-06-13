@@ -13,4 +13,5 @@ target 'myVK' do
   pod 'Realm', '~> 10.7'
   pod 'RealmSwift', '~> 10.7'
   pod "PromiseKit", "~> 6.8"
+  pod "Texture", '~> 3.0.0'
 end
