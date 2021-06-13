@@ -1,6 +1,21 @@
 PODS:
   - Alamofire (5.4.1)
   - Kingfisher (6.3.0)
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
+  - PINRemoteImage/Core (3.0.3):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.3):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.3):
+    - PINCache (~> 3.0.3)
+    - PINRemoteImage/Core
   - PromiseKit (6.15.2):
     - PromiseKit/CorePromise (= 6.15.2)
     - PromiseKit/Foundation (= 6.15.2)
@@ -16,6 +31,26 @@ PODS:
   - RealmSwift (10.7.6):
     - Realm (= 10.7.6)
   - SwiftyJSON (4.3.0)
+  - Texture (3.0.0):
+    - Texture/AssetsLibrary (= 3.0.0)
+    - Texture/Core (= 3.0.0)
+    - Texture/MapKit (= 3.0.0)
+    - Texture/Photos (= 3.0.0)
+    - Texture/PINRemoteImage (= 3.0.0)
+    - Texture/Video (= 3.0.0)
+  - Texture/AssetsLibrary (3.0.0):
+    - Texture/Core
+  - Texture/Core (3.0.0)
+  - Texture/MapKit (3.0.0):
+    - Texture/Core
+  - Texture/Photos (3.0.0):
+    - Texture/Core
+  - Texture/PINRemoteImage (3.0.0):
+    - PINRemoteImage/iOS (~> 3.0.0)
+    - PINRemoteImage/PINCache
+    - Texture/Core
+  - Texture/Video (3.0.0):
+    - Texture/Core
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -24,24 +59,33 @@ DEPENDENCIES:
   - Realm (~> 10.7)
   - RealmSwift (~> 10.7)
   - SwiftyJSON (~> 4.0)
+  - Texture
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - PromiseKit
     - Realm
     - RealmSwift
     - SwiftyJSON
+    - Texture
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
+  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   PromiseKit: b11e20e02977f69571038a631a467e010eb43206
   Realm: ed860452717c8db8f4bf832b6807f7f2ce708839
   RealmSwift: e31c4ddbcc42ac879313d656b86f9ca539f6f4f4
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
 
-PODFILE CHECKSUM: 72caf6e6fbbd7a0534e08972de97da2f22592f7c
+PODFILE CHECKSUM: 4174b689bf6d92b0745398024c761f8b7b1707df
 
 COCOAPODS: 1.10.1

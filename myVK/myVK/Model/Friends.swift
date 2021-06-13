@@ -100,6 +100,17 @@ class UserPhotos: Object {
     @objc dynamic var text: String = ""
     @objc dynamic var likes: Likes?
     let sizes = List<Sizes>()
+//    @objc dynamic var width: Int = 0
+//    @objc dynamic var height: Int = 0
+//
+//    @objc dynamic var aspectRation: CGFloat {
+//        guard width != 0 else {
+//            return 0
+//        }
+//        return (CGFloat(height)/CGFloat(width)).rounded()
+//    }
+//
+//    @objc dynamic var url: URL? { URL(string: urlJ)}
 
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
@@ -111,6 +122,17 @@ class UserPhotos: Object {
         let likesJson = json["likes"]
         self.likes = Likes(json: likesJson)
         self.sizes.append(objectsIn: json["sizes"].arrayValue.map(Sizes.init))
+        
+//        // Вытаскиваем массив всех доступных размеров
+//        guard let sizesArray = json["sizes"].array,
+//              // Используем для отображения только фото хорошего качества
+//              let xSize = sizesArray.first(where: { $0["type"].stringValue == "x" }),
+//              let urlJ = URL(string: xSize["url"].stringValue) else { return nil }
+//
+//        self.width = xSize["width"].intValue
+//        self.height = xSize["height"].intValue
+//        self.url = url
+
 
     }
     

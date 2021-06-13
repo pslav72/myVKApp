@@ -107,9 +107,16 @@ class ListFriendsViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowFriendImageSegue",
+//        if segue.identifier == "ShowFriendImageSegue",
+//           let cellIndexPath = tableView.indexPathForSelectedRow,
+//           let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
+//            let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row]
+//            friendsCollectionViewController.friend = selectedFriends
+//        }
+        
+        if segue.identifier == "ShowFriendImageADSegue",
            let cellIndexPath = tableView.indexPathForSelectedRow,
-           let friendsCollectionViewController = segue.destination as? FriendsCollectionViewController {
+           let friendsCollectionViewController = segue.destination as? FriendsImageTableController {
             let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row]
             friendsCollectionViewController.friend = selectedFriends
         }
@@ -163,7 +170,34 @@ class ListFriendsViewController: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
+//        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
+//        performSegue(withIdentifier: "ShowFriendImageADSegue", sender: nil)
+        let friend: Friends = sectionedUsers[indexPath.section].users[indexPath.row]
+        print(friend.id)
+        showAD(friend: friend)
+//        showImagePresentation()
+        
+    }
+    
+    
+    private func showAD(friend: Friends) {
+//        let photoVC = FriendsImageTableController()
+        let photoVC = FriendsImageCollectionController()
+        photoVC.friend = friend
+        
+        let navVC = UINavigationController(rootViewController: photoVC)
+        navVC.isNavigationBarHidden = false
+        navVC.modalTransitionStyle = .crossDissolve
+        navVC.modalPresentationStyle = .fullScreen
+//        present(photoVC, animated: false)
+        present(navVC, animated: false)
+    }
+    
+    private func showImagePresentation() {
+        let imageControllerPresentation = ImageControllerPresentation()
+        imageControllerPresentation.modalTransitionStyle = .crossDissolve
+        imageControllerPresentation.modalPresentationStyle = .pageSheet
+        present(imageControllerPresentation, animated: false)
     }
     
     

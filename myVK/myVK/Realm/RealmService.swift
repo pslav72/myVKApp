@@ -35,7 +35,7 @@ class RealmService {
                                 configuration: Realm.Configuration = config,
                                 update: Realm.UpdatePolicy = .modified) throws {
         let realm = try Realm(configuration: configuration)
-        print(configuration.fileURL ?? "")
+//        print(configuration.fileURL ?? "")
         try realm.write{
             realm.delete(items)
         }
