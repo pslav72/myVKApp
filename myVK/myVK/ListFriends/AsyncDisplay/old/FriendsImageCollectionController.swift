@@ -1,5 +1,5 @@
 //
-//  FriendsImageController.swift
+//  FriendsImageCollectionController.swift
 //  myVK
 //
 //  Created by Вячеслав Поляков on 08.06.2021.
@@ -9,7 +9,7 @@ import UIKit
 import AsyncDisplayKit
 import RealmSwift
 
-class FriendsImageController: ASDKViewController<ASDisplayNode> {
+class FriendsImageCollectionController: ASDKViewController<ASDisplayNode> {
     
     var vkApi = VKApi()
     let realmService = RealmService.self
@@ -19,8 +19,8 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
     var friendPhotosNotificationToken: NotificationToken?
     
     
-    var tableNode: ASTableNode {
-        return node as! ASTableNode
+    var collecionNode: ASCollectionNode {
+        return node as! ASCollectionNode
     }
     
     
@@ -52,13 +52,16 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
     }
     
     override init() {
-        // Инициализируемся с таблицей в качестве корневого View / Node
-        super.init(node: ASTableNode())
-        self.tableNode.backgroundColor = .white
+        let flowLayout = UICollectionViewFlowLayout()
+        let collectionNode = ASCollectionNode(collectionViewLayout: flowLayout)
+        super.init(node: collectionNode)
+        flowLayout.minimumInteritemSpacing = 1
+        flowLayout.minimumLineSpacing = 1
+        self.collecionNode.backgroundColor = .white
         //        self.tableNode.delegate = self
-        self.tableNode.dataSource = self
+        self.collecionNode.dataSource = self
         // По желанию кастомизируем корневую таблицу
-        self.tableNode.allowsSelection = false
+        self.collecionNode.allowsSelection = false
     }
     
     required init?(coder: NSCoder) {
@@ -88,46 +91,59 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
             switch changes {
             case .initial:
                 print("Initial")
-                self.tableNode.reloadData()
+                self.collecionNode.reloadData()
             case let .update(_, deletions, insertions, modifications):
                 print(deletions, insertions, modifications)
                 //                self?.tableNode.view.applyNotificationToken(deletions: deletions, insertions: insertions, modifications: modifications)
-                self.tableNode.reloadData()
+                self.collecionNode.reloadData()
             case let  .error(error):
                 print(error)
             }
         }
         
-        tableNode.view.refreshControl = refreshControl
+        collecionNode.view.refreshControl = refreshControl
+//
+//        let backButton = UIButton(type: .custom)
+//        backButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+//        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backAction))
         
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-//        backButton.setTitle("Back", for: .normal)
-//        backButton.setTitleColor(backbutton.tintColor, for: .normal)
-        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        if let friendName = friend?.name {
+            navigationItem.title = String(friendName)
+        }
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        //MARK: - На будущую релизацию переходов
+        
+        //                self.navigationItem.leftItemsSupplementBackButton = true
+        //                navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        //
+        //        if let topItem = self.navigationController?.navigationBar.topItem {
+        //           topItem.backBarButtonItem = UIBarButtonItem(title: "ass", style: .plain, target: self, action: #selector(backAction))
+        //        }
+        
     }
     
      @objc func backAction() {
+        print("Back")
         self.navigationController?.dismiss(animated: true)
     }
     
 }
 
-extension FriendsImageController: ASTableDataSource {
+extension FriendsImageCollectionController: ASCollectionDataSource {
     
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return friendPhotos?.count ?? 0
     }
     
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        1
     }
     
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         guard let resource = friendPhotos?[indexPath.section],
-              let indexPath = resource.sizes.firstIndex(where: {$0.type == "m"})  else {
+              let indexPath = resource.sizes.firstIndex(where: {$0.type == "x"})  else {
             preconditionFailure("News Cell cannot be dequeued")
         }
         
@@ -137,7 +153,6 @@ extension FriendsImageController: ASTableDataSource {
         
         return {FriendsImageNode(resource: resource, imageURL: imageURL, height: height, width: width)}
     }
-    
     
     
 }

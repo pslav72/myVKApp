@@ -43,6 +43,7 @@ class FriendsImageNode: ASCellNode {
         }
 
         photoImageNode.url = URL(string: imageURL)
+        
         photoImageNode.contentMode = .scaleAspectFill
         photoImageNode.shouldRenderProgressImages = true
         

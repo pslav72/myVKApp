@@ -116,7 +116,7 @@ class ListFriendsViewController: UITableViewController {
         
         if segue.identifier == "ShowFriendImageADSegue",
            let cellIndexPath = tableView.indexPathForSelectedRow,
-           let friendsCollectionViewController = segue.destination as? FriendsImageController {
+           let friendsCollectionViewController = segue.destination as? FriendsImageTableController {
             let selectedFriends = sectionedUsers[cellIndexPath.section].users[cellIndexPath.row]
             friendsCollectionViewController.friend = selectedFriends
         }
@@ -181,13 +181,14 @@ class ListFriendsViewController: UITableViewController {
     
     
     private func showAD(friend: Friends) {
-        let photoVC = FriendsImageController()
-        let navVC = UINavigationController(rootViewController: photoVC)
+//        let photoVC = FriendsImageTableController()
+        let photoVC = FriendsImageCollectionController()
         photoVC.friend = friend
-        photoVC.modalTransitionStyle = .crossDissolve
-        photoVC.modalPresentationStyle = .overFullScreen
         
-        navVC.setNavigationBarHidden(false, animated: false)
+        let navVC = UINavigationController(rootViewController: photoVC)
+        navVC.isNavigationBarHidden = false
+        navVC.modalTransitionStyle = .crossDissolve
+        navVC.modalPresentationStyle = .fullScreen
 //        present(photoVC, animated: false)
         present(navVC, animated: false)
     }
