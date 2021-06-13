@@ -172,7 +172,6 @@ class ListFriendsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        performSegue(withIdentifier: "ShowFriendImageSegue", sender: nil)
 //        performSegue(withIdentifier: "ShowFriendImageADSegue", sender: nil)
-//        showAD(friend: sectionedUsers[])
         let friend: Friends = sectionedUsers[indexPath.section].users[indexPath.row]
         print(friend.id)
         showAD(friend: friend)
@@ -180,12 +179,17 @@ class ListFriendsViewController: UITableViewController {
         
     }
     
+    
     private func showAD(friend: Friends) {
         let photoVC = FriendsImageController()
+        let navVC = UINavigationController(rootViewController: photoVC)
         photoVC.friend = friend
         photoVC.modalTransitionStyle = .crossDissolve
         photoVC.modalPresentationStyle = .overFullScreen
-        present(photoVC, animated: false)
+        
+        navVC.setNavigationBarHidden(false, animated: false)
+//        present(photoVC, animated: false)
+        present(navVC, animated: false)
     }
     
     private func showImagePresentation() {

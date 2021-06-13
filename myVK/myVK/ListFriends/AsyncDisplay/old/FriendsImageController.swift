@@ -14,7 +14,7 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
     var vkApi = VKApi()
     let realmService = RealmService.self
     var friend: Friends?
-
+    
     lazy var friendPhotos: Results<UserPhotos>? = try? Realm(configuration: realmService.config).objects(UserPhotos.self).filter("owner_id == %@",friend?.id ?? 0)
     var friendPhotosNotificationToken: NotificationToken?
     
@@ -55,7 +55,7 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
         // Инициализируемся с таблицей в качестве корневого View / Node
         super.init(node: ASTableNode())
         self.tableNode.backgroundColor = .white
-//        self.tableNode.delegate = self
+        //        self.tableNode.delegate = self
         self.tableNode.dataSource = self
         // По желанию кастомизируем корневую таблицу
         self.tableNode.allowsSelection = false
@@ -91,16 +91,27 @@ class FriendsImageController: ASDKViewController<ASDisplayNode> {
                 self.tableNode.reloadData()
             case let .update(_, deletions, insertions, modifications):
                 print(deletions, insertions, modifications)
-            //                self?.tableNode.view.applyNotificationToken(deletions: deletions, insertions: insertions, modifications: modifications)
+                //                self?.tableNode.view.applyNotificationToken(deletions: deletions, insertions: insertions, modifications: modifications)
                 self.tableNode.reloadData()
             case let  .error(error):
                 print(error)
             }
         }
-
+        
         tableNode.view.refreshControl = refreshControl
+        
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+//        backButton.setTitle("Back", for: .normal)
+//        backButton.setTitleColor(backbutton.tintColor, for: .normal)
+        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
+     @objc func backAction() {
+        self.navigationController?.dismiss(animated: true)
+    }
     
 }
 
@@ -123,7 +134,7 @@ extension FriendsImageController: ASTableDataSource {
         let imageURL:String = resource.sizes[indexPath].url
         let height: Int = resource.sizes[indexPath].height
         let width: Int = resource.sizes[indexPath].width
-
+        
         return {FriendsImageNode(resource: resource, imageURL: imageURL, height: height, width: width)}
     }
     
